@@ -81,7 +81,7 @@ LoadModule alias_module libexec/64/mod_alias.so
 LoadModule rewrite_module libexec/64/mod_rewrite.so
 LoadModule headers_module libexec/64/mod_headers.so
 LoadModule env_module libexec/64/mod_env.so
-LoadModule wsgi_module libexec/64/mod_wsgi-2.6.so
+LoadModule wsgi_module libexec/64/mod_wsgi-2.7.so
 LoadModule cache_module libexec/64/mod_cache.so
 LoadModule disk_cache_module libexec/64/mod_disk_cache.so
 LoadModule deflate_module libexec/64/mod_deflate.so
@@ -101,7 +101,7 @@ WSGIScriptAlias ${sroot}/depot ${template_dir}/depot_index.py
         test_proto = os.environ.get("PKG5_TEST_PROTO", None)
         if test_proto:
                 context.write("""
-WSGIDaemonProcess pkgdepot processes=1 threads=21 user=pkg5srv group=pkg5srv display-name=pkg5_depot inactivity-timeout=300 python-path=%s/usr/lib/python2.6
+WSGIDaemonProcess pkgdepot processes=1 threads=21 user=pkg5srv group=pkg5srv display-name=pkg5_depot inactivity-timeout=300 python-path=%s/usr/lib/python2.7
 SetEnv PKG5_TEST_PROTO %s
 """ % (test_proto, test_proto))
         else:

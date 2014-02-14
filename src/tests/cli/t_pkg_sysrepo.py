@@ -1,4 +1,4 @@
-#!/usr/bin/python2.6
+#!/usr/bin/python2.7
 #
 # CDDL HEADER START
 #
@@ -2200,7 +2200,7 @@ PUBLISHER\tSTICKY\tSYSPUB\tENABLED\tTYPE\tSTATUS\tURI\tPROXY
 
         __smf_cmds_template = { \
             "usr/bin/svcprop" : """\
-#!/usr/bin/python
+#!/usr/bin/python2.7
 
 import getopt
 import sys
@@ -2236,7 +2236,7 @@ if __name__ == "__main__":
 """,
 
             "usr/sbin/svcadm" : """\
-#!/usr/bin/python
+#!/usr/bin/python2.7
 
 import getopt
 import sys

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2.7
 # -*- coding: utf-8
 # CDDL HEADER START
 #
@@ -37,7 +37,7 @@ class TestPkgFWDependencies(pkg5unittest.SingleDepotTestCase):
         # leverage smf test infrastructure here
         smf_cmds = {
             "testdriver" :
-"""#!/usr/bin/python
+"""#!/usr/bin/python2.7
 import os
 import sys
 

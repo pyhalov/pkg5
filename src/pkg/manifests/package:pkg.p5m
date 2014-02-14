@@ -34,7 +34,7 @@ set name=variant.arch value=$(ARCH)
 dir  path=$(PYDIR)
 dir  path=$(PYDIRVP)
 dir  path=$(PYDIRVP)/pkg
-file path=$(PYDIRVP)/pkg-0.1-py2.6.egg-info
+file path=$(PYDIRVP)/pkg-0.1-py2.7.egg-info
 dir  path=$(PYDIRVP)/pkg/64
 file path=$(PYDIRVP)/pkg/64/_varcet.so
 file path=$(PYDIRVP)/pkg/__init__.py
@@ -86,7 +86,8 @@ file path=$(PYDIRVP)/pkg/client/api_errors.py
 # Don't worry about the libbe import; the python code looks for it in case
 # it can't import libbe_py, and is graceful in the face of its absence.
 #
-file path=$(PYDIRVP)/pkg/client/bootenv.py pkg.depend.bypass-generate=.*libbe.*
+file path=$(PYDIRVP)/pkg/client/bootenv.py \
+    pkg.depend.bypass-generate=.*(libbe\.|libbe/|libbemodule).*
 file path=$(PYDIRVP)/pkg/client/debugvalues.py
 file path=$(PYDIRVP)/pkg/client/firmware.py
 file path=$(PYDIRVP)/pkg/client/history.py

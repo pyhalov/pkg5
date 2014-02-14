@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2.7
 #
 # CDDL HEADER START
 #
@@ -38,7 +38,7 @@ class TestSMF(pkg5unittest.SingleDepotTestCase):
 
         smf_cmds = { \
             "usr/bin/svcprop" : """\
-#!/usr/bin/python
+#!/usr/bin/python2.7
 
 import getopt
 import os

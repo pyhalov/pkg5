@@ -1,4 +1,4 @@
-#!/usr/bin/python2.6
+#!/usr/bin/python2.7
 #
 # CDDL HEADER START
 #
@@ -508,7 +508,7 @@ depends on a path delivered by multiple packages. Those packages are:pkg:/sat_ba
 }
 
         python_text = """\
-#!/usr/bin/python
+#!/usr/bin/python2.7
 
 import pkg.indexer as indexer
 import pkg.search_storage as ss
@@ -715,7 +715,7 @@ file NOHASH group=bin mode=0444 owner=root path=usr/lib/python%(py_ver)s/vendor-
 file NOHASH group=bin mode=0444 owner=root path=usr/lib/python%(py_ver)s/vendor-packages/pkg/__init__.py
 file NOHASH group=bin mode=0444 owner=root path=usr/lib/python%(py_ver)s/lib-tk/pkg/search_storage.py
 file NOHASH group=bin mode=0444 owner=root path=usr/lib/python%(py_ver)s/vendor-packages/pkg/misc.py
-file NOHASH group=bin mode=0755 owner=root path=usr/bin/python
+file NOHASH group=bin mode=0755 owner=root path=usr/bin/python2.7
 """
 
         def make_pyver_resolve_results(self, proto_area):
@@ -2633,7 +2633,7 @@ set name=pkg.fmri value=pkg:/a@0.5.11,5.11-0.160
 file NOHASH group=bin mode=0755 owner=root path=etc/file.py \
     pkg.depend.runpath=$PKGDEPEND_RUNPATH:$PKGDEPEND_RUNPATH
     """
-                self.make_proto_text_file("etc/file.py", "#!/usr/bin/python2.6")
+                self.make_proto_text_file("etc/file.py", "#!/usr/bin/python2.7")
                 tp = self.make_manifest(mf)
                 self.pkgdepend_generate("-d %s %s" % (self.test_proto_dir, tp),
                     exit=1)

@@ -238,7 +238,7 @@ class Pkg5TestCase(unittest.TestCase):
 
         smf_cmds = { \
             "usr/bin/svcprop" : """\
-#!/usr/bin/python
+#!/usr/bin/python2.7
 
 import sys
 

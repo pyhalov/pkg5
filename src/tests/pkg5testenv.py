@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2.7
 
 # CDDL HEADER START
 #
@@ -77,7 +77,7 @@ def setup_environment(path_to_proto, covdir=None, debug=False):
         # Clean up relative ../../, etc. out of path to proto
         proto_area = os.path.realpath(proto_area)
 
-        pkgs = "%s/usr/lib/python2.6/vendor-packages" % proto_area
+        pkgs = "%s/usr/lib/python2.7/vendor-packages" % proto_area
         bins = "%s/usr/bin" % proto_area
 
         sys.path.insert(1, pkgs)

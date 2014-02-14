@@ -65,7 +65,7 @@ BOOK_FRAGMENTS= developer-guide.txt	\
 PROTO=../../proto/dev-guide
 DOCTMP=doctmp
 DOCTOOLS=doctools
-TOOLSPATH=$(DOCTOOLS)/lib/python2.6/site-packages
+TOOLSPATH=$(DOCTOOLS)/lib/python2.7/site-packages
 
 RST2PDF=@PYTHONPATH=$(TOOLSPATH) $(DOCTOOLS)/bin/rst2pdf -s $(STYLE) $(BOOK_OPT)
 STYLE=dev-guide.style
@@ -90,8 +90,8 @@ WGET=/usr/bin/wget
 
 # our version of docutils doesn't work with rst2pdf at the moment, so we need
 # to apply a patch to that code.  We apply a similar patch to docbook.py
-CREATEPDF=$(TOOLSPATH)/rst2pdf-0.16-py2.6.egg/rst2pdf/createpdf.py
-DOCBOOKPY=$(TOOLSPATH)/docutils-0.8.1-py2.6.egg/docutils/writers/docbook.py
+CREATEPDF=$(TOOLSPATH)/rst2pdf-0.16-py2.7.egg/rst2pdf/createpdf.py
+DOCBOOKPY=$(TOOLSPATH)/docutils-0.8.1-py2.7.egg/docutils/writers/docbook.py
 
 VERSION_CMD=id -i || git log --pretty=format:'%h' -1..
 VERSION=$(VERSION_CMD:sh)
@@ -120,7 +120,7 @@ rst2docbook: rst2pdf
 		python setup.py install --prefix=../../../../../$(DOCTOOLS); \
 		cd ../../../../../ ; \
 		# XXX this is ugly; \
-		cp -r $(TOOLSPATH)/docutils $(TOOLSPATH)/docutils-0.8.1-py2.6.egg ; \
+		cp -r $(TOOLSPATH)/docutils $(TOOLSPATH)/docutils-0.8.1-py2.7.egg ; \
 		rm -rf $(TOOLSPATH)/docutils ; \
 		$(GPATCH) -f -R $(DOCBOOKPY) < docbook.patch; \
 	fi

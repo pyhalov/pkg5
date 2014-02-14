@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2.7
 #
 # CDDL HEADER START
 #
@@ -328,7 +328,7 @@ close
         installed_18045 = """\
 open runtime/python26@2.6.4,5.11-0.161
 add set name=variant.foo value=i386
-add file tmp/foo group=bin mode=0755 owner=root path=usr/bin/python
+add file tmp/foo group=bin mode=0755 owner=root path=usr/bin/python2.7
 close
 """
         # a file dependency that declares variant.opensolaris.zone values
@@ -345,7 +345,7 @@ depend fmri=__TBD pkg.debug.depend.file=python pkg.debug.depend.path=usr/bin typ
 open runtime/python26@2.6.4,5.11-0.161
 add set name=variant.foo value=i386
 add set name=variant.opensolaris.zone value=global value=nonglobal
-add file tmp/foo group=bin mode=0755 owner=root path=usr/bin/python
+add file tmp/foo group=bin mode=0755 owner=root path=usr/bin/python2.7
 close
 """
         # a file dependency that doesn't declare variant.opensolaris.zone values
@@ -360,7 +360,7 @@ depend fmri=__TBD pkg.debug.depend.file=python pkg.debug.depend.path=usr/bin typ
         installed_18045_mixed = """\
 open runtime/python26@2.6.4,5.11-0.161
 add set name=variant.foo value=i386
-add file tmp/foo group=bin mode=0755 owner=root path=usr/bin/python
+add file tmp/foo group=bin mode=0755 owner=root path=usr/bin/python2.7
 close
 """
         # a file dependency that only declares variant.opensolaris.zone values

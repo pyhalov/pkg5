@@ -1,4 +1,4 @@
-#!/usr/bin/python2.6
+#!/usr/bin/python2.7
 #
 # CDDL HEADER START
 #
@@ -100,7 +100,7 @@ else:
 pkgs_dir = os.path.normpath(os.path.join(pwd, os.pardir, "packages", arch))
 extern_dir = os.path.normpath(os.path.join(pwd, "extern"))
 
-py_install_dir = 'usr/lib/python2.6/vendor-packages'
+py_install_dir = 'usr/lib/python2.7/vendor-packages'
 
 scripts_dir = 'usr/bin'
 lib_dir = 'usr/lib'

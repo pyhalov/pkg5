@@ -23,7 +23,7 @@
 # Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
 #
 
-PYTHON = /usr/bin/python2.6
+PYTHON = /usr/bin/python2.7
 
 all := TARGET = all
 install := TARGET = install
@@ -88,7 +88,7 @@ $(SUBDIRS): FRC
 packages: install pylint
 	@cd pkg; pwd; $(MAKE) $(TARGET) check \
 		PATH=$$(hg root 2>/dev/null || git rev-parse --show-toplevel)/proto/root_$$(uname -p)/usr/bin:$$PATH \
-		PYTHONPATH=$$(hg root 2>/dev/null || git rev-parse --show-toplevel)/proto/root_$$(uname -p)/usr/lib/python2.6/vendor-packages
+		PYTHONPATH=$$(hg root 2>/dev/null || git rev-parse --show-toplevel)/proto/root_$$(uname -p)/usr/lib/python2.7/vendor-packages
 
 test:
 	$(PYTHON) setup.py test
