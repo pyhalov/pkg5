@@ -1380,7 +1380,7 @@ file NOHASH group=sys mode=0755 owner=root path=%(runpath_mod_test_path)s
                             "search_storage", "minidom"]
                         pkg_names = ["indexer_test", "pkg", "pkg_test", "xml",
                             "dom"]
-                        expected_deps = set([("python",)] +
+                        expected_deps = set([("python2.7",)] +
                             [tuple(sorted([
                                 "%s%s" % (n,s) for s in mod_suffs
                             ]))
@@ -1431,7 +1431,7 @@ file NOHASH group=sys mode=0755 owner=root path=%(runpath_mod_test_path)s
                             "minidom"]
                         pkg_names = ["indexer_test", "pkg", "pkg_test", "xml",
                             "dom"]
-                        expected_deps = set([("python",)] +
+                        expected_deps = set([("python2.7",)] +
                             [tuple(sorted([
                                 "%s%s" % (n,s) for s in mod_suffs
                             ]))
@@ -1492,7 +1492,7 @@ file NOHASH group=sys mode=0755 owner=root path=%(runpath_mod_test_path)s
                         path_suffixes = {"minidom.py": "xml/dom",
                             "dom/__init__.py": "xml"}
 
-                        expected_deps = set([("python",)] +
+                        expected_deps = set([("python2.7",)] +
                             [tuple(sorted([
                                 "%s%s" % (n,s) for s in mod_suffs
                             ]))
@@ -2032,7 +2032,7 @@ file NOHASH group=sys mode=0755 owner=root path=%(runpath_mod_test_path)s
                             "search_storage", "minidom"]
                         pkg_names = ["indexer_test", "pkg", "pkg_test",
                             "xml", "dom"]
-                        expected_deps = set([("python",)] +
+                        expected_deps = set([("python2.7",)] +
                             [tuple(sorted([
                                 "%s%s" % (n,s) for s in mod_suffs
                             ]))
