@@ -326,6 +326,11 @@ class PipeSocket(PipeFile):
                 # Unused argument; pylint: disable=W0613
                 return
 
+	def setsockopt(self, level, optname, value):
+		"""Nothing to do here.  Move along."""
+		# Unused argument; pylint: disable=W0613
+		return
+
 
 class PipedHTTPResponse(httplib.HTTPResponse):
         """Create a httplib.HTTPResponse like object that can be used with
@@ -394,6 +399,10 @@ class PipedHTTP(httplib.HTTP):
                 connection."""
                 return self._conn.sock
 
+	def getresponse(self, buffering=False, ignoreme=False):
+		"""Wrap parent class method"""
+		return self._conn.getresponse(self,buffering)	
+
 
 class _PipedTransport(rpc.Transport):
         """Create a Transport object which can create new PipedHTTP
@@ -404,6 +413,7 @@ class _PipedTransport(rpc.Transport):
                 self.__http_enc = http_enc
                 rpc.Transport.__init__(self)
                 self.verbose = False
+		self._extra_headers = []
 
         def __del__(self):
                 # make sure the destructor gets called for our connection
