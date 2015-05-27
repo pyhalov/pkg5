@@ -18,6 +18,8 @@
     pkg:/library/python/ply-35
     pkg:/library/python/portend-27
     pkg:/library/python/portend-35
+    pkg:/library/python/prettytable-27
+    pkg:/library/python/prettytable-35
     pkg:/library/python/pybonjour-27
     pkg:/library/python/pybonjour-35
     pkg:/library/python/pycurl-27

@@ -225,3 +225,4 @@ file path=$(PY35DIRVP)/pkg/variant.py
 file path=$(PY35DIRVP)/pkg/version.py pkg.depend.bypass-generate=.*six.*
 # CFFI import is done in C code, so it isn't picked up by pkgdepend
 depend type=require fmri=library/python/cffi-35
+depend type=require fmri=library/python/prettytable-35
