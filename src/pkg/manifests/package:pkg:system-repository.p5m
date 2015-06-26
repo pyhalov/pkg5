@@ -72,3 +72,4 @@ depend type=require fmri=package/pkg@$(PKGVERS)
 # our method script, and can't be detected by pkgdepend.
 #
 depend type=require fmri=web/server/apache-22
+depend type=require fmri=web/server/apache-22/module/apache-wsgi-27
