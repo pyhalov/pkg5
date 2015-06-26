@@ -125,7 +125,7 @@
                         <!-- Where we store runtime versions of our
 			 configuration -->
                         <propval name='runtime_dir' type='astring'
-				value='/system/volatile/pkg/sysrepo' />
+				value='/var/run/pkg/sysrepo' />
                         <!-- Where we store our Mako templates for generating
 			 runtime configuration -->
                         <propval name='template_dir' type='astring'
