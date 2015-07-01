@@ -34,10 +34,10 @@ try:
         import locale
         import os
         import shutil
+        import six
         import sys
         import tempfile
         import traceback
-        import urllib
 
         import pkg.actions as actions
         import pkg.fmri
@@ -53,6 +53,7 @@ try:
         from pkg.misc import PipeError, emsg, msg
 	from pkg.client.pkgdefs import (EXIT_OK, EXIT_OOPS, EXIT_BADOPT,
 	    EXIT_PARTIAL)
+        from six.moves.urllib.parse import quote
 except KeyboardInterrupt:
         import sys
         sys.exit(EXIT_OOPS)
@@ -60,12 +61,8 @@ except KeyboardInterrupt:
 class PkgmergeException(Exception):
         """An exception raised if something goes wrong during the merging
         process."""
+        pass
 
-        def __unicode__(self):
-                # To workaround python issues 6108 and 2517, this provides a
-                # a standard wrapper for this class' exceptions so that they
-                # have a chance of being stringified correctly.
-                return str(self)
 
 catalog_dict   = {}    # hash table of catalogs by source uri
 fmri_cache     = {}
@@ -182,7 +179,7 @@ def load_catalog(repouri, pub):
         pub.repository = pub.repository
 
 def get_all_pkg_names(repouri):
-        return catalog_dict[repouri.uri].keys()
+        return list(catalog_dict[repouri.uri].keys())
 
 def get_manifest(repouri, fmri):
         """Fetch the manifest for package-fmri 'fmri' from the source
@@ -257,7 +254,7 @@ def main_func():
         variants = set()
         vcombos = collections.defaultdict(set)
         for src_vars in variant_list:
-                for v, vval in src_vars.iteritems():
+                for v, vval in six.iteritems(src_vars):
                         variants.add(v)
                         vcombos[v].add((v, vval))
 
@@ -490,7 +487,7 @@ def republish_packages(pub, target_pub, processdict, source_list, variant_list,
                 open_time = pfmri.get_timestamp()
                 return "{0:d}_{0}".format(
                     calendar.timegm(open_time.utctimetuple()),
-                    urllib.quote(str(pfmri), ""))
+                    quote(str(pfmri), ""))
 
         for entry in processdict:
                 man, retrievals = merge_fmris(source_list,
@@ -842,7 +839,7 @@ def build_merge_list(include, exclude, cat):
                         include_dict[pkg_name] -= exclude_dict[pkg_name]
 
         return dict((k, sorted(list(v), reverse=True)[0])
-                    for k,v in include_dict.iteritems()
+                    for k,v in six.iteritems(include_dict)
                     if v), include_misses
 
 def match_user_fmris(patterns, cat):

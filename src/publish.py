@@ -30,6 +30,7 @@ import getopt
 import gettext
 import locale
 import os
+import six
 import sys
 import traceback
 import warnings
@@ -55,7 +56,7 @@ nopub_actions = [ "unknown" ]
 def error(text, cmd=None):
         """Emit an error message prefixed by the command name """
 
-        if not isinstance(text, basestring):
+        if not isinstance(text, six.string_types):
                 # Assume it's an object that can be stringified.
                 text = str(text)
 
@@ -335,7 +336,7 @@ def trans_publish(repo_uri, fargs):
                 filelist = [("<stdin>", sys.stdin)]
         else:
                 try:
-                        filelist = [(f, file(f)) for f in pargs]
+                        filelist = [(f, open(f)) for f in pargs]
                 except IOError as e:
                         error(e, cmd="publish")
                         return EXIT_OOPS
@@ -436,7 +437,7 @@ def trans_publish(repo_uri, fargs):
                         basename = os.path.basename(a.attrs["path"])
                         for pattern in timestamp_files:
                                 if fnmatch.fnmatch(basename, pattern):
-                                        if not isinstance(path, basestring):
+                                        if not isinstance(path, six.string_types):
                                                 # Target is from bundle; can't
                                                 # apply timestamp now.
                                                 continue
@@ -487,7 +488,7 @@ def trans_include(repo_uri, fargs, transaction=None):
                 filelist = [("<stdin>", sys.stdin)]
         else:
                 try:
-                        filelist = [(f, file(f)) for f in pargs]
+                        filelist = [(f, open(f)) for f in pargs]
                 except IOError as e:
                         error(e, cmd="include")
                         return EXIT_OOPS

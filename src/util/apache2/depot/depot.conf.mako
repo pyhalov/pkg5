@@ -28,9 +28,7 @@
 # dropped into an Apache conf.d directory, or it can be referenced from
 # a more complete httpd.conf template via an include directive.
 #
-</%doc><%
-import urllib
-%>
+</%doc>
 RewriteEngine on
 
 # We need to allow these as they're encoded in the package/manifest names

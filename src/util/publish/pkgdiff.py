@@ -39,6 +39,7 @@ import pkg.misc as misc
 from pkg.misc import PipeError
 from collections import defaultdict
 from pkg.client.pkgdefs import EXIT_OK, EXIT_OOPS, EXIT_BADOPT, EXIT_PARTIAL
+from itertools import product
 
 def usage(errmsg="", exitcode=EXIT_BADOPT):
         """Emit a usage message and optionally prefix it with a more specific
@@ -310,8 +311,8 @@ def main_func():
                                                 s.append("  + {0}".format(new.hash))
                                 attrdiffs = (set(new.differences(old)) -
                                     ignoreattrs)
-                                attrsames = sorted( list(set(old.attrs.keys() +
-                                    new.attrs.keys()) -
+                                attrsames = sorted( list(set(list(old.attrs.keys()) +
+                                    list(new.attrs.keys())) -
                                     set(new.differences(old))))
                         else:
                                 if hasattr(old, "hash") and "hash" in onlyattrs:
@@ -320,8 +321,8 @@ def main_func():
                                                 s.append("  + {0}".format(new.hash))
                                 attrdiffs = (set(new.differences(old)) &
                                     onlyattrs)
-                                attrsames = sorted(list(set(old.attrs.keys() +
-                                    new.attrs.keys()) -
+                                attrsames = sorted(list(set(list(old.attrs.keys()) +
+                                    list(new.attrs.keys())) -
                                     set(new.differences(old))))
 
                         for a in sorted(attrdiffs):
@@ -354,17 +355,6 @@ def main_func():
                                         print(l)
 
         return int(different)
-
-def product(*args, **kwds):
-        # product('ABCD', 'xy') --> Ax Ay Bx By Cx Cy Dx Dy
-        # product(range(2), repeat=3) --> 000 001 010 011 100 101 110 111
-        # from python 2.7 itertools
-        pools = map(tuple, args) * kwds.get('repeat', 1)
-        result = [[]]
-        for pool in pools:
-                result = [x+[y] for x in result for y in pool]
-        for prod in result:
-                yield tuple(prod)
 
 if __name__ == "__main__":
 	misc.setlocale(locale.LC_ALL, "", error)
