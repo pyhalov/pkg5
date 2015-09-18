@@ -80,6 +80,7 @@ clint:
 
 pylint: install
 	PYLINT_VER=$(PYLINT_VER_CMD:sh) $(PYTHON27) setup.py pylint
+	PYLINT_VER=$(PYLINT_VER_CMD:sh) $(PYTHON27) setup.py pylint_py3k
 
 pep8:
 	$(PEP8) --statistics --count `cat tests/pep8-whitelist.txt`
