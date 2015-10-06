@@ -2271,7 +2271,7 @@ class ManifestProgress(ProgressCallback):
         def abort(self):
                 """Download failed.  Remove the amount of bytes downloaded
                 by this file from the ProgressTracker."""
-		pass
+                pass
 
         def commit(self, size):
                 """Indicate that this download has succeeded."""
