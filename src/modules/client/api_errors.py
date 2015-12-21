@@ -976,6 +976,14 @@ class ActionExecutionError(ApiException):
                 return "{0}{1}".format(errno, details)
 
 
+class CatalogOriginRefreshException(ApiException):
+        def __init__(self, failed, total, errmessage=None):
+                ApiException.__init__(self)
+                self.failed = failed
+                self.total = total
+                self.errmessage = errmessage
+
+
 class CatalogRefreshException(ApiException):
         def __init__(self, failed, total, succeeded, errmessage=None):
                 ApiException.__init__(self)
@@ -1413,6 +1421,7 @@ class NonLeafPackageException(ApiException):
                 )
                 return s
 
+
 def _str_autofix(self):
 
         if getattr(self, "_autofix_pkgs", []):
@@ -1424,6 +1433,7 @@ def _str_autofix(self):
                         "repository or remove the\npackages in the list above.")
                 return s
         return ""
+
 
 class InvalidDepotResponseException(ApiException):
         """Raised when the depot doesn't have versions of operations
@@ -1444,6 +1454,7 @@ class InvalidDepotResponseException(ApiException):
                 s += _str_autofix(self)
 
                 return s
+
 
 class DataError(ApiException):
         """Base exception class used for all data related errors."""
