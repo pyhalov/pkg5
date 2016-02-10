@@ -310,8 +310,23 @@ unconfigure_zone() {
 	ZONE_IS_MOUNTED=1
 	zoneadm -z $ZONENAME mount -f || fatal "$e_badmount"
 
-	zlogin -S $ZONENAME /usr/sbin/sys-unconfig -R /a \
-	    </dev/null >/dev/null 2>&1
+	#
+	# We don't deliver sys-unconfig, so do its job manually
+	#
+	zlogin -S $ZONENAME <<EOF
+	/usr/bin/env SVCCFG_DTD=/usr/share/lib/xml/dtd/service_bundle.dtd.1 \
+		SVCCFG_REPOSITORY=/a/etc/svc/repository.db \
+		SVCCFG_CONFIGD_PATH=/lib/svc/bin/svc.configd \
+		svccfg -s svc:/system/sysding:system setprop \
+		config/finished=false &&
+	rm -f /a/etc/hostname\.* &&
+	for file in /a/etc/ipadm/*\.conf /a/etc/dladm/*\.conf ; do
+		if [ -f "\$file" ]; then
+			: > "\$file" || exit 1;
+		fi
+	done
+EOF
+
 	if (( $? != 0 )); then
 		error "$e_unconfig"
 		failed=1
