@@ -2876,7 +2876,7 @@ class PkgSolver(object):
                 # fails. The workaround is to add only the first dependency to the trim dictionary.
                 if (type(reason[1]) is tuple and len(reason[1])>1 and type(reason[1][1]) is list
                   and len(reason[1][1])>=1):
-                        reason=(reason[0],(reason[1][0],reason[1][1][0]))
+                        reason = (reason[0], (reason[1][0], reason[1][1][0]))
                 tup = (reason_id, reason, frozenset(fmri_adds))
                 
                 for fmri in it:

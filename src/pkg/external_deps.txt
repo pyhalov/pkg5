@@ -9,16 +9,55 @@
     pkg:/developer/gnome/gnome-doc-utils
     pkg:/developer/python/pylint
     pkg:/developer/versioning/mercurial
-    pkg:/library/python-2/cherrypy-27
+    pkg:/gnome/config/gconf
+    pkg:/gnome/theme/hicolor-icon-theme
+    pkg:/library/python-2/cherrypy
+    pkg:/library/python-2/cherrypy-26
     pkg:/library/python-2/coverage-27
+    pkg:/library/python-2/g11nsvc
+    pkg:/library/python-2/jsonrpclib
+    pkg:/library/python-2/jsonrpclib-26
     pkg:/library/python-2/jsonrpclib-27
+    pkg:/library/python-2/jsonschema
+    pkg:/library/python-2/jsonschema-26
+    pkg:/library/python-2/jsonschema-27
+    pkg:/library/python-2/libbe
     pkg:/library/python-2/locale-services
+    pkg:/library/python-2/m2crypto
+    pkg:/library/python-2/m2crypto-26
     pkg:/library/python-2/m2crypto-27
+    pkg:/library/python-2/mako
+    pkg:/library/python-2/mako-26
     pkg:/library/python-2/mako-27
+    pkg:/library/python-2/ply
+    pkg:/library/python-2/ply-26
     pkg:/library/python-2/ply-27
+    pkg:/library/python-2/pybonjour
+    pkg:/library/python-2/pybonjour-26
     pkg:/library/python-2/pybonjour-27
+    pkg:/library/python-2/pygobject
+    pkg:/library/python-2/pygobject-26
+    pkg:/library/python-2/pygobject-27
+    pkg:/library/python-2/pygtk2
+    pkg:/library/python-2/pygtk2-26
+    pkg:/library/python-2/pygtk2-27
+    pkg:/library/python-2/pycurl
+    pkg:/library/python-2/pycurl-26
     pkg:/library/python-2/pycurl-27
+    pkg:/library/python-2/pyopenssl
+    pkg:/library/python-2/pyopenssl-26
     pkg:/library/python-2/pyopenssl-27
+    pkg:/library/python-2/gnome-python
+    pkg:/library/python-2/gnome-python-26
+    pkg:/library/python-2/gnome-python-27
+    pkg:/library/python-2/gnome-python-extras
+    pkg:/library/python-2/gnome-python-extras-26
+    pkg:/library/python-2/gnome-python-extras-27
+    pkg:/library/python-2/python-notify
+    pkg:/library/python-2/python-notify-26
+    pkg:/library/python-2/python-notify-27
+    pkg:/library/python-2/simplejson
+    pkg:/library/python-2/simplejson-26
     pkg:/library/python-2/simplejson-27
     pkg:/library/python/cherrypy-26
     pkg:/library/python/cherrypy-27
@@ -34,6 +73,7 @@
     pkg:/library/python/pyopenssl-27
     pkg:/library/python/simplejson-27
     pkg:/package/svr4
+    pkg:/runtime/python-26
     pkg:/runtime/python-27
     pkg:/runtime/python-34
     pkg:/service/network/dns/mdns
