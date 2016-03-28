@@ -1433,6 +1433,8 @@ class build_data_func(Command):
                 # Anything that gets created here should get deleted in
                 # clean_func.run() below.
                 i18n_check()
+                for f in intl_files:
+                        intltool_merge(f, f[:-3])
 
                 for l in help_locales:
                         path = "gui/help/%s/" % l
@@ -1483,6 +1485,9 @@ class clean_func(_clean):
                 _clean.run(self)
 
                 rm_f("po/.intltool-merge-cache")
+
+                for f in intl_files:
+                        rm_f(f[:-3])
 
                 for l in pkg_locales:
                         rm_f("po/{0}.mo".format(l))
