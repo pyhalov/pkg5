@@ -63,13 +63,13 @@
 	<exec_method
 		type='method'
 		name='start'
-		exec='lib/svc/method/pkg-update start'
+		exec='lib/svc/method/svc-pkg-update start'
 		timeout_seconds='60' />
 
 	<exec_method
 		type='method'
 		name='stop'
-		exec='lib/svc/method/pkg-update stop'
+		exec='lib/svc/method/svc-pkg-update stop'
 		timeout_seconds='60' />
 
 	<property_group name='startd' type='framework'>
