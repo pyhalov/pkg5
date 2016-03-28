@@ -370,6 +370,6 @@ depend type=require fmri=library/python/python-gnome-extras
 depend type=require-any fmri=runtime/python-26 fmri=runtime/python-27
 depend type=require fmri=desktop/gksu
 depend type=require fmri=gnome/theme/hicolor-icon-theme
-depend type=require fmri=package/pkg type=require
+depend type=require fmri=package/pkg
 depend type=require fmri=system/font/xorg/xorg-core
 depend type=require fmri=system/library/dbus
