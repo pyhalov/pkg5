@@ -190,6 +190,7 @@ scripts_sunos = {
                     'svc-pkg-repositories-setup'],
                 ['svc/svc-pkg-server', 'svc-pkg-server'],
                 ['svc/svc-pkg-sysrepo', 'svc-pkg-sysrepo'],
+                ['svc/svc-pkg-update', 'svc-pkg-update'],
                 ['um/pkg-update', 'pkg-update'],
                 ],
         svc_share_dir: [
@@ -378,6 +379,7 @@ smf_app_files = [
         'svc/pkg-server.xml',
         'svc/pkg-update.xml',
         'svc/pkg-system-repository.xml',
+	'svc/pkg-update.xml',
         'svc/zoneproxy-client.xml',
         'svc/zoneproxyd.xml'
         ]
