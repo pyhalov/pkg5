@@ -132,6 +132,7 @@ class GuiProgressTracker(progress.ProgressTracker):
                 self.update_label_text(text)
                 pass
 
+        def _output_flush(self): pass
         def _ver_output(self): pass
         def _ver_output_error(self, actname, errors): pass
         def _ver_output_warning(self, actname, warnings): pass
