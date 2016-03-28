@@ -47,6 +47,8 @@ trap_exit()
 
 ROOT="rpool/ROOT"
 
+PKG=/usr/bin/pkg
+
 # Other brand clone options are invalid for this brand.
 while getopts "R:s:Xz:" opt; do
 	case $opt in
@@ -202,6 +204,7 @@ is_brand_labeled
 	zoneadm -z $ZONENAME mount -f || fatal "$e_badmount"
 else
 	unconfigure_zone
+	set_brand_property
 fi
 
 trap - EXIT

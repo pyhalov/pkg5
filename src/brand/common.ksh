@@ -46,6 +46,7 @@ f_no_gzbe=$(gettext "unable to determine global zone boot environment.")
 f_no_ds=$(gettext "the zonepath must be a ZFS dataset.\nThe parent directory of the zonepath must be a ZFS dataset so that the\nzonepath ZFS dataset can be created properly.")
 f_multiple_ds=$(gettext "multiple active datasets.")
 f_no_active_ds=$(gettext "no active dataset.")
+f_prop=$(gettext "failed to change image properties\n")
 f_zfs_unmount=$(gettext "Unable to unmount the zone's root ZFS dataset (%s).\nIs there a global zone process inside the zone root?\nThe current zone boot environment will remain mounted.\n")
 f_zfs_mount=$(gettext "Unable to mount the zone's ZFS dataset.")
 
@@ -80,6 +81,26 @@ fail_usage() {
 	printf "$m_brnd_usage" 1>&2
 	printf "$m_usage\n" 1>&2
 	exit $ZONE_SUBPROC_USAGE
+}
+
+get_brand() {
+	if [ -z $ALTROOT ]; then
+		AR_OPTIONS=""
+	else
+		AR_OPTIONS="-R $ALTROOT"
+	fi
+	/usr/sbin/zoneadm $AR_OPTIONS -z $ZONENAME \
+		list -p | awk -F: '{print $6}'
+}
+
+set_brand_property() {
+	brand=$(get_brand)
+	case "$brand" in
+		*ipkg)
+			LC_ALL=C PKG_IMAGE="$ZONEROOT" $PKG set-property brand "$brand" || \
+			    pkg_err_check "$f_prop"
+		;;
+	esac
 }
 
 is_brand_labeled() {

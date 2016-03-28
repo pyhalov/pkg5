@@ -60,6 +60,7 @@ import pkg.client.pkgdefs as pkgdefs
 import pkg.client.pkgplan as pkgplan
 import pkg.client.pkgremote
 import pkg.client.progress as progress
+import pkg.config as cfg
 import pkg.facet
 import pkg.fmri
 import pkg.misc as misc
@@ -1024,6 +1025,14 @@ class LinkedImage(object):
                 # if we're not a child image then bail
                 if not self.ischild():
                         return
+
+		# Avoid checking publishers for non-linked images
+		try:
+			brand = self.__img.get_property("brand")
+			if brand == "nlipkg":
+				return
+		except cfg.UnknownPropertyError:
+			pass
 
                 # if we're using the sysrepo then don't bother
                 if self.__img.cfg.get_policy("use-system-repo"):

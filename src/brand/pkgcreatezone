@@ -394,6 +394,8 @@ if (( $brand_labeled == 1 )); then
 	done
 fi
 
+set_brand_property
+
 printf "$m_complete\n\n" ${SECONDS}
 if (( $brand_labeled == 0 )); then
 	printf "$m_postnote\n"
