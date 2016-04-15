@@ -186,7 +186,7 @@ def generate(args):
                 return EXIT_OOPS
 
         if echo_manf:
-                fh = open(manf, "rb")
+                fh = open(manf, "r")
                 for l in fh:
                         msg(l.rstrip())
                 fh.close()
@@ -284,7 +284,7 @@ def resolve(args, img_dir):
                 system_patterns = []
                 for f in constraint_files:
                         try:
-                                with open(f, "rb") as fh:
+                                with open(f, "r") as fh:
                                         for l in fh:
                                                 l = l.strip()
                                                 if l and not l.startswith("#"):
@@ -392,7 +392,7 @@ def __resolve_echo_line(l):
 
 def __echo_manifest(pth, out_func, strip_newline=False):
         try:
-                with open(pth, "rb") as fh:
+                with open(pth, "r") as fh:
                         text = ""
                         act = ""
                         for l in fh:
@@ -459,7 +459,7 @@ def write_res(deps, out_file, echo_manifest, manifest_path):
 
         ret_code = EXIT_OK
         try:
-                out_fh = open(out_file, "wb")
+                out_fh = open(out_file, "w")
         except EnvironmentError:
                 ret_code = EXIT_OOPS
                 emsg(_("Could not open output file {0} for writing").format(
@@ -591,6 +591,9 @@ if __name__ == "__main__":
 
         # Make all warnings be errors.
         warnings.simplefilter('error')
+        if six.PY3:
+                # disable ResourceWarning: unclosed file
+                warnings.filterwarnings("ignore", category=ResourceWarning)
 
         try:
                 __ret = main_func()

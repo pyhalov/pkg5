@@ -21,15 +21,17 @@
 #
 
 #
-# Copyright (c) 2009, 2015, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2016, Oracle and/or its affiliates. All rights reserved.
 #
 
 from __future__ import print_function
 import getopt
 import gettext
 import locale
+import six
 import sys
 import traceback
+import warnings
 from functools import cmp_to_key
 
 import pkg.actions
@@ -360,6 +362,10 @@ if __name__ == "__main__":
 	gettext.install("pkg", "/usr/share/locale",
 	    codeset=locale.getpreferredencoding())
 	misc.set_fd_limits(printer=error)
+
+        if six.PY3:
+                # disable ResourceWarning: unclosed file
+                warnings.filterwarnings("ignore", category=ResourceWarning)
 
         try:
                 exit_code = main_func()

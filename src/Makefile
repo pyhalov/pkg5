@@ -24,7 +24,7 @@
 #
 
 PYTHON27 = /usr/bin/python2.7
-PYTHON34 = /usr/bin/python3.4
+PYTHON35 = /usr/bin/python3.5
 
 all := TARGET = all
 install := TARGET = install
@@ -49,6 +49,7 @@ PYLINT_VER_CMD = PYTHONPATH= /usr/bin/pkg info pkg:/developer/python/pylint | \
 	/usr/bin/awk -F: '{print $$2}' | /usr/bin/sed -e 's/ //g'
 
 PEP8 = /usr/bin/pep8
+JOBS = 4
 
 SUBDIRS=brand zoneproxy tsol util/mkcert
 
@@ -69,6 +70,7 @@ clobber: $(SUBDIRS)
 #
 install: $(SUBDIRS)
 	$(PYTHON27) setup.py install
+	$(PYTHON35) setup.py install
 
 lint:
 	$(PYTHON27) setup.py lint
@@ -92,14 +94,15 @@ pep8:
 $(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
-# Use the bits we just built to create the packages.
-packages: install pylint pep8
+# Use the bits we just built to create the packages. - #XXX pep8
+packages: install
 	@cd pkg; pwd; $(MAKE) $(TARGET) check \
 		PATH=$$(hg root 2>/dev/null || git rev-parse --show-toplevel)/proto/root_$$(uname -p)/usr/bin:$$PATH \
 		PYTHONPATH=$$(hg root 2>/dev/null || git rev-parse --show-toplevel)/proto/root_$$(uname -p)/usr/lib/python2.7/vendor-packages
 
 test:
-	$(PYTHON27) setup.py test
+	$(PYTHON27) tests/run.py -j ${JOBS} -v
+	#$(PYTHON35) tests/run.py -j ${JOBS} -v
 
 test-verbose:
 	$(PYTHON27) setup.py test -v
