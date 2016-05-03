@@ -452,6 +452,7 @@ Usage:
                 logger.error(_("""
 Options:
         -R dir
+        --no-network-cache
         --help or -?
 
 Environment:
@@ -5443,7 +5444,7 @@ def main_func():
 
         try:
                 opts, pargs = getopt.getopt(sys.argv[1:], "R:D:?",
-                    ["debug=", "help", "runid="])
+                    ["debug=", "help", "runid=", "no-network-cache"])
         except getopt.GetoptError as e:
                 usage(_("illegal global option -- {0}").format(e.opt))
 
@@ -5468,6 +5469,8 @@ def main_func():
                         runid = arg
                 elif opt in ("--help", "-?"):
                         show_usage = True
+                elif opt == "--no-network-cache":
+                        global_settings.client_no_network_cache = True
 
         # The globals in pkg.digest can be influenced by debug flags
         if DebugValues:
