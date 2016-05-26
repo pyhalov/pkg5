@@ -77,6 +77,7 @@ try:
         import pkg.portable
         from pkg.misc import emsg, PipeError
         from pkg.actions.generic import quote_attr_value
+        from pkg.actions.depend import known_types as dep_types
         from pkg.client.pkgdefs import (EXIT_OK, EXIT_OOPS, EXIT_BADOPT,
             EXIT_PARTIAL)
 except KeyboardInterrupt:
@@ -181,6 +182,14 @@ def read_line(f):
 
                 try:
                         act = pkg.actions.fromstr(actstr)
+
+                        # For formatting purposes, treat dependency actions that
+                        # do not yet have a valid type as invalid.
+                        if (act.name == "depend" and
+                            act.attrs.get("type") not in dep_types):
+                                raise pkg.actions.InvalidActionError(act,
+                                    _("Unknown type '{0}' in depend "
+                                      "action").format(act.attrs.get("type")))
                 except (pkg.actions.MalformedActionError,
                     pkg.actions.UnknownActionError,
                     pkg.actions.InvalidActionError):

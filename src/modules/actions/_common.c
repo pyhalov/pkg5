@@ -178,17 +178,18 @@ _generic_init_common(PyObject *action, PyObject *data, PyObject *attrs)
 			 */
 			multi_error = 1;
 		} else {
-			PyObject *dt = PyDict_GetItemString(attrs, "type");
 			/*
-			 * If dependency type is 'require-any', multiple values
-			 * are allowed for key attribute.
+			 * Publication will enforce restrictions on values based
+			 * on dependency type; so only check that the 'type'
+			 * attribute itself has a single value.
 			 */
+			PyObject *dt = PyDict_GetItemString(attrs, "type");
 			if (dt != NULL) {
 				char *ts = PyBytes_AsString(dt);
 				if (ts == NULL) {
 					PyObject *type_aname =
 					    PyBytes_FromStringAndSize("type",
-						4);
+					    4);
 					set_invalid_action_error(
 					    "KeyAttributeMultiValueError",
 					    action, type_aname);
@@ -197,8 +198,6 @@ _generic_init_common(PyObject *action, PyObject *data, PyObject *attrs)
 					Py_DECREF(aname);
 					return (NULL);
 				}
-				if (strcmp(ts, "require-any") != 0)
-					multi_error = 1;
 			} else {
 				multi_error = 1;
 			}
