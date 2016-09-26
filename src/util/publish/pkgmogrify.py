@@ -37,6 +37,7 @@ import warnings
 import pkg.actions
 import pkg.misc as misc
 from pkg.misc import PipeError
+from pkg.client.pkgdefs import EXIT_OK, EXIT_OOPS, EXIT_BADOPT, EXIT_PARTIAL
 
 macros  = {}
 includes = []
@@ -45,7 +46,7 @@ transforms = []
 printinfo = []
 
 
-def usage(errmsg="", exitcode=2):
+def usage(errmsg="", exitcode=EXIT_BADOPT):
         """Emit a usage message and optionally prefix it with a more specific
         error message.  Causes program to exit."""
 
@@ -672,7 +673,7 @@ def read_file(tp, ignoreincludes):
 
         return ret
 
-def error(text, exitcode=1):
+def error(text, exitcode=EXIT_OOPS):
         """Emit an error message prefixed by the command name """
 
         print("pkgmogrify: {0}".format(text), file=sys.stderr)
@@ -680,9 +681,6 @@ def error(text, exitcode=1):
                 sys.exit(exitcode)
 
 def main_func():
-        gettext.install("pkg", "/usr/share/locale",
-            codeset=locale.getpreferredencoding())
-
         outfilename = None
         printfilename = None
         verbose = False
@@ -709,7 +707,7 @@ def main_func():
                         if opt == "-v":
                                 verbose = True
                         if opt in ("--help", "-?"):
-                                usage(exitcode=0)
+                                usage(exitcode=EXIT_OK)
 
         except getopt.GetoptError as e:
                 usage(_("illegal global option -- {0}").format(e.opt))
@@ -728,7 +726,7 @@ def main_func():
                         lines.extend(read_file(f, ignoreincludes))
                         lines.append((None, f[0], None))
         except RuntimeError as e:
-                sys.exit(1)
+                sys.exit(EXIT_OOPS)
 
         output = []
 
@@ -820,6 +818,10 @@ def main_func():
         return 0
 
 if __name__ == "__main__":
+        misc.setlocale(locale.LC_ALL, "", error)
+        gettext.install("pkg", "/usr/share/locale",
+            codeset=locale.getpreferredencoding())
+        misc.set_fd_limits(printer=error)
 
         # Make all warnings be errors.
         warnings.simplefilter('error')
@@ -827,7 +829,7 @@ if __name__ == "__main__":
         try:
                 exit_code = main_func()
         except (PipeError, KeyboardInterrupt):
-                exit_code = 1
+                exit_code = EXIT_OOPS
         except SystemExit as __e:
                 exit_code = __e
         except Exception as __e:

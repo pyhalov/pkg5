@@ -398,9 +398,6 @@ def main_func():
 
         temp_root = misc.config_temp_root()
 
-        gettext.install("pkg", "/usr/share/locale",
-            codeset=locale.getpreferredencoding())
-
         global_settings.client_name = "pkgrecv"
         target = os.environ.get("PKG_DEST", None)
         src_uri = os.environ.get("PKG_SRC", None)
@@ -1431,6 +1428,10 @@ def transfer_pkgs(pargs, target, list_newest, all_versions, all_timestamps,
         return pkgdefs.EXIT_OK
 
 if __name__ == "__main__":
+        misc.setlocale(locale.LC_ALL, "", error)
+        gettext.install("pkg", "/usr/share/locale",
+            codeset=locale.getpreferredencoding())
+        misc.set_fd_limits(printer=error)
 
         # Make all warnings be errors.
         warnings.simplefilter('error')
