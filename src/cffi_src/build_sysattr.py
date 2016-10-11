@@ -125,7 +125,7 @@ typedef struct nvpair {
     data_type_t nvp_type;       /* type of value */
 } nvpair_t;
 
-typedef enum { B_FALSE = 0, B_TRUE = 1 } boolean_t;
+typedef enum { _B_FALSE = 0, _B_TRUE = 1 } boolean_t;
 typedef	unsigned int uint_t;
 
 /* Functions */
