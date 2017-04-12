@@ -709,8 +709,7 @@ class ImagePlan(object):
                                 ignore_inst_parent_deps=\
                                     ignore_inst_parent_deps,
                                 exact_install=exact_install,
-                                installed_dict_tmp=installed_dict_tmp,
-                                insync=self.image.linked.insync)
+                                installed_dict_tmp=installed_dict_tmp)
 
                         return solver, new_vector, new_avoid_obs
 
@@ -1370,8 +1369,7 @@ class ImagePlan(object):
                                         reject_set=reject_set,
                                         trim_proposed_installed=False,
                                         ignore_inst_parent_deps=\
-                                            ignore_inst_parent_deps,
-                                        insync=self.image.linked.insync)
+                                            ignore_inst_parent_deps)
                         else:
                                 # Updating all installed packages requires a
                                 # different solution path.
