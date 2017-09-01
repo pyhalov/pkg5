@@ -274,7 +274,7 @@ file path=usr/bin/pkgsign
 file path=usr/bin/pkgsurf
 <transform file path=usr/bin/ -> set pkg.depend.bypass-generate .*six.*>
 dir  path=usr/lib
-file path=usr/lib/pkg.depotd mode=0755
+file path=usr/lib/pkg.depotd mode=0755 pkg.depend.bypass-generate=.*
 dir  path=usr/share
 dir  path=usr/share/lib
 dir  path=usr/share/lib/pkg
