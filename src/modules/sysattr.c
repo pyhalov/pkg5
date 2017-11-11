@@ -178,7 +178,7 @@ py_fsetattr(PyObject *self, PyObject *args)
 	if ((attrs_iter = PyObject_GetIter(attrs)) == NULL)
 		goto out;
 
-	while (attr = PyIter_Next(attrs_iter)) {
+	while ((attr = PyIter_Next(attrs_iter)) != NULL) {
 		char *attr_str = PyString_AsString(attr);
 		if (attr_str == NULL) {
 			goto out;
@@ -304,7 +304,7 @@ py_fgetattr(PyObject *self, PyObject *args, PyObject *kwds)
 	}
 
 	int count = 0;
-	while (pair = nvlist_next_nvpair(response, pair)) {
+	while ((pair = nvlist_next_nvpair(response, pair)) != NULL) {
 		char *name = nvpair_name(pair);
 		/* we ignore all non-boolean attrs */
 		if (nvpair_type(pair) != DATA_TYPE_BOOLEAN_VALUE)
@@ -362,6 +362,6 @@ static PyMethodDef methods[] = {
 };
 
 PyMODINIT_FUNC
-initsysattr() {
+initsysattr(void) {
 	(void) Py_InitModule("sysattr", methods);
 }

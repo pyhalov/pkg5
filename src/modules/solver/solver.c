@@ -39,12 +39,14 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
 // Just like 'assert()' but expression will be evaluated in the release version as well.
 static inline void check(int expr) { assert(expr); }
 
+#ifdef VERBOSEDEBUG
 static void printlits(lit* begin, lit* end)
 {
     int i;
     for (i = 0; i < end - begin; i++)
         printf(L_LIT" ",L_lit(begin[i]));
 }
+#endif
 
 //=================================================================================================
 // Random numbers:
@@ -601,7 +603,9 @@ static void solver_analyze(solver* s, clause* c, veci* learnt)
                 act_clause_bump(s,c);
 
             lits = clause_begin(c);
-            //printlits(lits,lits+clause_size(c)); printf("\n");
+#ifdef VERBOSEDEBUG
+            printlits(lits,lits+clause_size(c)); printf("\n");
+#endif
             for (j = (p == lit_Undef ? 0 : 1); j < clause_size(c); j++){
                 lit q = lits[j];
                 assert(lit_var(q) >= 0 && lit_var(q) < s->size);
@@ -727,7 +731,9 @@ clause* solver_propagate(solver* s)
                     lits[1] = false_lit;
                 }
                 assert(lits[1] == false_lit);
-                //printf("checking clause: "); printlits(lits, lits+clause_size(*i)); printf("\n");
+#ifdef VERBOSEDEBUG
+                printf("checking clause: "); printlits(lits, lits+clause_size(*i)); printf("\n");
+#endif
 
                 // If 0th watch is true, then clause is already satisfied.
                 sig = !lit_sign(lits[0]); sig += sig - 1;
@@ -871,13 +877,13 @@ static lbool solver_search(solver* s, int nof_conflicts, int nof_learnts)
                 solver_canceluntil(s,s->root_level);
                 veci_delete(&learnt_clause);
 
-                /*
+#ifdef VERBOSEDEBUG
                 veci apa; veci_new(&apa);
                 for (i = 0; i < s->size; i++) 
                     veci_push(&apa,(int)(s->model.ptr[i] == l_True ? toLit(i) : lit_neg(toLit(i))));
                 printf("model: "); printlits((lit*)apa.ptr, (lit*)apa.ptr + veci_size(&apa)); printf("\n");
                 veci_delete(&apa);
-                */
+#endif
 
                 return l_True;
             }
@@ -1079,7 +1085,9 @@ bool solver_addclause(solver* s, lit* begin, lit* end)
 
     if (begin == end) return false;
 
-    //printlits(begin,end); printf("\n");
+#ifdef VERBOSEDEBUG
+    printlits(begin,end); printf("\n");
+#endif
     // insertion sort
     maxvar = lit_var(*begin);
     for (i = begin + 1; i < end; i++){
@@ -1091,7 +1099,9 @@ bool solver_addclause(solver* s, lit* begin, lit* end)
     }
     solver_setnvars(s,maxvar+1);
 
-    //printlits(begin,end); printf("\n");
+#ifdef VERBOSEDEBUG
+    printlits(begin,end); printf("\n");
+#endif
     values = s->assigns;
 
     // delete duplicates
@@ -1105,7 +1115,9 @@ bool solver_addclause(solver* s, lit* begin, lit* end)
             last = *j++ = *i;
     }
 
-    //printf("final: "); printlits(begin,j); printf("\n");
+#ifdef VERBOSEDEBUG
+    printf("final: "); printlits(begin,j); printf("\n");
+#endif
 
     if (j == begin)          // empty clause
         return false;
@@ -1168,7 +1180,10 @@ bool   solver_solve(solver* s, lit* begin, lit* end)
     lbool*  values        = s->assigns;
     lit*    i;
     
-    //printf("solve: "); printlits(begin, end); printf("\n");
+#ifdef VERBOSEDEBUG
+    printf("solve: "); printlits(begin, end); printf("\n");
+#endif
+
     for (i = begin; i < end; i++){
         switch (lit_sign(*i) ? -values[lit_var(*i)] : values[lit_var(*i)]){
         case 1: /* l_True: */

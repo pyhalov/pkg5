@@ -545,8 +545,8 @@ static PyMethodDef no_module_methods[] = {
 	{NULL} /* Sentinel */
 };
 
-void
-initsolver()
+PyMODINIT_FUNC
+initsolver(void)
 {
 	PyObject *m;
 

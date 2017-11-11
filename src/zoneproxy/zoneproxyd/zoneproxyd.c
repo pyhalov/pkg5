@@ -627,7 +627,7 @@ check_connect(struct proxy_pair *pair)
 static void
 proxy_func(struct proxy_pair *pair, port_event_t *ev)
 {
-	int	rc;
+	int	rc = 0;
 
 	if (ev->portev_events & (POLLERR | POLLHUP | POLLNVAL)) {
 		pair->pp_state = PROXY_STATE_CLOSING;
@@ -647,6 +647,8 @@ proxy_func(struct proxy_pair *pair, port_event_t *ev)
 		break;
 	case PROXY_STATE_WAIT_DATA:
 		rc = send_recv_data(pair);
+		break;
+	default:
 		break;
 	}
 
@@ -1135,7 +1137,7 @@ __zpd_fattach_zone(zoneid_t zid, int door, boolean_t detach_only)
 {
 	char *path = ZP_DOOR_PATH;
 	int pid, stat, tmpl_fd;
-	ctid_t ct;
+	ctid_t ct = -1;
 
 	escalate_privs();
 
@@ -1183,8 +1185,8 @@ __zpd_fattach_zone(zoneid_t zid, int door, boolean_t detach_only)
 		}
 		_exit(do_fattach(door, path, detach_only));
 	}
-	if (contract_latest(&ct) == -1)
-		ct = -1;
+        /* We ignore result, as if contract_latest() fails, ct contains -1 anyway */
+	(void) contract_latest(&ct);
 	(void) ct_tmpl_clear(tmpl_fd);
 	if (close(tmpl_fd) < 0) {
 		perror("close");
@@ -1935,7 +1937,7 @@ main(int argc, char **argv)
 {
 	extern char *optarg;
 	char *proxystr = NULL;
-	char *proxy_host, *proxy_port;
+	char *proxy_host = NULL, *proxy_port = NULL;
 	int rc;
 	int ncpu;
 	struct proxy_listener *wl;

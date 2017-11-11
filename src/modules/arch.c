@@ -138,6 +138,6 @@ static PyMethodDef methods[] = {
 	{ NULL, NULL }
 };
 
-void initarch() {
+void initarch(void) {
 	Py_InitModule("arch", methods);
 }

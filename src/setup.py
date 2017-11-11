@@ -1470,9 +1470,9 @@ class Extension(distutils.core.Extension):
 # These are set to real values based on the platform, down below
 compile_args = None
 if osname in ("sunos", "linux", "darwin"):
-        compile_args = [ "-O3" ]
+        compile_args = [ "-O3", "-D__EXTENSIONS__", "-Werror" ]
 if osname == "sunos":
-        link_args = []
+        link_args = ["-zdefs"]
 else:
         link_args = []
 

@@ -146,7 +146,7 @@ static PyMethodDef methods[] = {
 };
 
 void
-initsyscallat() {
+initsyscallat(void) {
 	if (Py_InitModule("syscallat", methods) == NULL) {
 		/* Initialization failed */
 		return;
