@@ -2165,6 +2165,7 @@ PUBLISHER\tSTICKY\tSYSPUB\tENABLED\tTYPE\tSTATUS\tURI\tPROXY
                 self.pkg("set-property use-system-repo True")
 
                 # the client should see packages from the test1 pubs.
+                self.pkg("refresh")
                 self.pkg("list -afH")
                 expected = (
                     "bar 1.1-0 ---\n"
@@ -2181,6 +2182,7 @@ PUBLISHER\tSTICKY\tSYSPUB\tENABLED\tTYPE\tSTATUS\tURI\tPROXY
                 self.pkg("set-property use-system-repo False")
 
                 # the client should only see the installed package.
+                self.pkg("refresh")
                 self.pkg("list -afH")
                 expected = (
                     "example_pkg 1.0-0 i--\n")
@@ -2194,6 +2196,7 @@ PUBLISHER\tSTICKY\tSYSPUB\tENABLED\tTYPE\tSTATUS\tURI\tPROXY
                 self.pkg("set-property use-system-repo True")
 
                 # the client should see packages from the test1 pubs.
+                self.pkg("refresh")
                 self.pkg("list -afH")
                 expected = (
                     "bar 1.1-0 ---\n"

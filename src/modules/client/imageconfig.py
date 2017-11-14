@@ -1074,7 +1074,7 @@ class BlendedConfig(object):
 
                 syscfg_path = os.path.join(imgdir, "pkg5.syspub")
                 # load the existing system repo config
-                if os.path.exists(syscfg_path):
+                if use_system_pub and os.path.exists(syscfg_path):
                         old_sysconfig = ImageConfig(syscfg_path, None)
                 else:
                         old_sysconfig = NullSystemPublisher()
@@ -1536,8 +1536,12 @@ class BlendedConfig(object):
 
                 self.img_cfg.reset(overrides)
                 self.sys_cfg.reset()
-                old_sysconfig = ImageConfig(os.path.join(imgdir, "pkg5.syspub"),
-                    None)
+                syscfg_path = os.path.join(imgdir, "pkg5.syspub")
+                if self.cfg.get_policy("use-system-repo") and os.path.exists(syscfg_path):
+                        old_sysconfig = ImageConfig(os.path.join(imgdir, "pkg5.syspub"),
+                            None)
+                else:
+                        old_sysconfig = NullSystemPublisher()
                 self.__publishers, self.added_pubs, self.removed_pubs, \
                     self.modified_pubs = \
                         self.__merge_publishers(self.img_cfg,
