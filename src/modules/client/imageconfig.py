@@ -502,12 +502,6 @@ class ImageConfig(cfg.FileConfig):
                 self.__validate = True
                 self.__validate_properties()
 
-                # Finally, attempt to write configuration again to ensure
-                # changes are reflected on-disk -- but only if the version
-                # matches most current.
-                if self.version == CURRENT_VERSION:
-                        self.write(ignore_unprivileged=True)
-
         def set_property(self, section, name, value):
                 """Sets the value of the property object matching the given
                 section and name.  If the section or property does not already
