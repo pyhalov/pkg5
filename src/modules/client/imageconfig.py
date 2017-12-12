@@ -21,8 +21,8 @@
 #
 
 #
-# Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
 # Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 OmniOS Community Edition (OmniOSce) Association.
 #
 
 import collections
@@ -200,6 +200,8 @@ class ImageConfig(cfg.FileConfig):
                         default=default_policies[
                             CHECK_CERTIFICATE_REVOCATION]),
                     cfg.PropList("dehydrated"),
+                    cfg.PropList("exclude-patterns"),
+                    cfg.PropList("key-files")
                     cfg.PropBool(DEFAULT_RECURSE,
                         default=default_policies[DEFAULT_RECURSE]),
                     cfg.PropInt(DEFAULT_CONCURRENCY,
@@ -452,6 +454,9 @@ class ImageConfig(cfg.FileConfig):
                         self.variants["variant.arch"] = platform.processor()
                 if "variant.opensolaris.zone" not in self.variants:
                         self.variants["variant.opensolaris.zone"] = "global"
+                # Ensure imagetype variant is defined
+                if "variant.opensolaris.imagetype" not in self.variants:
+                        self.variants["variant.opensolaris.imagetype"] = "full"
 
                 # load linked image child properties
                 for s, v in six.iteritems(idx):
