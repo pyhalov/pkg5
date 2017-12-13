@@ -63,6 +63,8 @@ MIRROR_DISCOVERY = "mirror-discovery"
 SEND_UUID = "send-uuid"
 USE_SYSTEM_REPO = "use-system-repo"
 CHECK_CERTIFICATE_REVOCATION = "check-certificate-revocation"
+EXCLUDE_PATTERNS = "exclude-patterns"
+KEY_FILES = "key-files"
 DEFAULT_RECURSE = "default-recurse"
 DEFAULT_CONCURRENCY = "recursion-concurrency"
 AUTO_BE_NAME = "auto-be-name"
@@ -200,8 +202,8 @@ class ImageConfig(cfg.FileConfig):
                         default=default_policies[
                             CHECK_CERTIFICATE_REVOCATION]),
                     cfg.PropList("dehydrated"),
-                    cfg.PropList("exclude-patterns"),
-                    cfg.PropList("key-files")
+                    cfg.PropList(EXCLUDE_PATTERNS),
+                    cfg.PropList(KEY_FILES),
                     cfg.PropBool(DEFAULT_RECURSE,
                         default=default_policies[DEFAULT_RECURSE]),
                     cfg.PropInt(DEFAULT_CONCURRENCY,
