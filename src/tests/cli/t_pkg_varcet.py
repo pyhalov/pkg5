@@ -367,6 +367,7 @@ doc.txt True local
                 exp_def = """\
 arch {0[variant.arch]}
 icecream strawberry
+opensolaris.imagetype full
 opensolaris.zone global
 """.format(variants)
                 self.__assert_variant_matches(exp_def)
@@ -383,9 +384,10 @@ debug.foo false
                 # Matched case for explicitly set.
                 exp_def = """\
 arch {0[variant.arch]}
+opensolaris.imagetype full
 opensolaris.zone global
 """.format(variants)
-                names = ("arch", "'variant.*zone'")
+                names = ("arch", "'variant.*imagetype'", "'variant.*zone'")
                 self.__assert_variant_matches(exp_def, names=names)
 
                 # Verify -a output.
@@ -393,6 +395,7 @@ opensolaris.zone global
 arch {0[variant.arch]}
 debug.foo false
 icecream strawberry
+opensolaris.imagetype full
 opensolaris.zone global
 """.format(variants)
                 opts = ("-a",)
@@ -402,9 +405,10 @@ opensolaris.zone global
                 exp_def = """\
 arch {0[variant.arch]}
 debug.foo false
+opensolaris.imagetype full
 opensolaris.zone global
 """.format(variants)
-                names = ("'variant.debug.*'", "arch", "'*zone'")
+                names = ("'variant.debug.*'", "arch", "'*imagetype'", "'*zone'")
                 opts = ("-a",)
                 self.__assert_variant_matches(exp_def, opts=opts, names=names)
 
@@ -418,6 +422,7 @@ icecream strawberry
 
                 # Unmatched because variant is not used in package.
                 self.__assert_variant_fails("-i opensolaris.zone")
+                self.__assert_variant_fails("-i opensolaris.imagetype")
                 self.__assert_variant_fails("-i '*arch'")
 
                 # Verify -v and -av output.
@@ -460,6 +465,7 @@ debug.foo false
                 exp_def = """\
 arch {0[variant.arch]}
 icecream strawberry
+opensolaris.imagetype full
 opensolaris.zone global
 """.format(variants)
 
@@ -510,6 +516,7 @@ opensolaris.zone global
                 # variants set and no packages installed.
                 exp_def = """\
 arch {0[variant.arch]}
+opensolaris.imagetype full
 opensolaris.zone global
 """.format(variants)
 
@@ -545,6 +552,7 @@ opensolaris.zone global
                 exp_def = """\
 arch {0[variant.arch]}
 icecream strawberry
+opensolaris.imagetype full
 opensolaris.zone global
 """.format(variants)
 
@@ -562,6 +570,7 @@ opensolaris.zone global
                 exp_def = """\
 arch {0[variant.arch]}
 icecream strawberry
+opensolaris.imagetype full
 opensolaris.zone global
 """.format(variants)
                 self.__assert_variant_matches(exp_def)
@@ -591,6 +600,7 @@ opensolaris.zone global
                 exp_def = """\
 arch {0[variant.arch]}
 icecream strawberry
+opensolaris.imagetype full
 opensolaris.zone global
 """.format(variants)
                 self.__assert_variant_matches(exp_def)
@@ -599,6 +609,7 @@ opensolaris.zone global
                 exp_def = """\
 arch {0[variant.arch]}
 icecream strawberry
+opensolaris.imagetype full
 opensolaris.zone global
 unknown 
 """.format(variants)
