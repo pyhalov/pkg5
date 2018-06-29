@@ -20,7 +20,7 @@
 #
 
 #
-# Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
 #
 
 PYTHON27 = /usr/bin/python2.7
@@ -47,7 +47,7 @@ PYLINT_VER_CMD = PYTHONPATH= /usr/bin/pkg info pkg:/developer/python/pylint | \
 	/usr/bin/grep Version | \
 	/usr/bin/awk -F: '{print $$2}' | /usr/bin/sed -e 's/ //g'
 
-SUBDIRS=brand zoneproxy tsol
+SUBDIRS=brand zoneproxy tsol util/mkcert
 
 all: $(SUBDIRS)
 	$(PYTHON27) setup.py build

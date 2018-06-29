@@ -18,7 +18,7 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2010, 2015, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2016, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/package/pkg@$(PKGVERS)
@@ -464,10 +464,12 @@ license cr_Oracle license=cr_Oracle
 # cross zone dependency on linked image metadata
 #depend type=parent fmri=feature/package/dependency/self #    variant.opensolaris.zone=nonglobal
 depend type=require fmri=crypto/ca-certificates
+# CFFI import is done in C code, so it isn't picked up by pkgdepend
+depend type=require fmri=library/python/cffi
 depend type=require fmri=library/python/cherrypy
+depend type=require fmri=library/python/cryptography
 depend type=require fmri=library/python/jsonrpclib
 depend type=require fmri=library/python/jsonschema
-depend type=require fmri=library/python/m2crypto
 depend type=require fmri=library/python/mako
 depend type=require fmri=library/python/ply
 depend type=require fmri=library/python/pybonjour
