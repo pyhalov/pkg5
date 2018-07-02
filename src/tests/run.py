@@ -125,7 +125,10 @@ if __name__ == "__main__":
                 print("Illegal option -- {0}".format(e.opt), file=sys.stderr)
                 sys.exit(1)
 
-        bfile = os.path.join(os.getcwd(), "baseline.txt")
+        if six.PY3:
+                bfile = os.path.join(os.getcwd(), "baseline3.txt")
+        else:
+                bfile = os.path.join(os.getcwd(), "baseline.txt")
         generate = False
         onlyval = []
         output = ""
@@ -518,7 +521,10 @@ if __name__ == "__main__":
 
         # Update baseline results and display mismatches (failures)
         baseline.store()
-        baseline.reportfailures()
+        if six.PY3:
+                baseline.reportfailures('failures.3')
+        else:
+                baseline.reportfailures()
 
         # Stop and save coverage data for API tests, and combine coverage data
         # from all processes.
