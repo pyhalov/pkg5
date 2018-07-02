@@ -2207,8 +2207,8 @@ def apply_hot_fix(**args):
                                 hdl.setopt(pycurl.NOPROGRESS, False)
                         try:
                                 hdl.perform()
-                        except pycurl.error as err:
-                                errno, errstr = err
+                        except pycurl.error as error:
+                                errno, errstr = error
                                 msg("An error occurred: {0}".format(errstr))
                                 return
 

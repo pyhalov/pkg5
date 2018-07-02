@@ -49,7 +49,7 @@ PYLINT_VER_CMD = PYTHONPATH= /usr/bin/pkg info pkg:/developer/python/pylint | \
 	/usr/bin/awk -F: '{print $$2}' | /usr/bin/sed -e 's/ //g'
 
 PEP8 = /usr/bin/pep8
-JOBS = 4
+JOBS = 8
 
 SUBDIRS=brand zoneproxy tsol util/mkcert
 
@@ -100,14 +100,8 @@ packages: install
 		PATH=$$(hg root 2>/dev/null || git rev-parse --show-toplevel)/proto/root_$$(uname -p)/usr/bin:$$PATH \
 		PYTHONPATH=$$(hg root 2>/dev/null || git rev-parse --show-toplevel)/proto/root_$$(uname -p)/usr/lib/python2.7/vendor-packages
 
-test:
-	$(PYTHON27) tests/run.py -j ${JOBS} -v
-	#$(PYTHON35) tests/run.py -j ${JOBS} -v
-
-test-verbose:
-	$(PYTHON27) setup.py test -v
-
-test-generate:
-	$(PYTHON27) setup.py test -g
+test: install
+	-pfexec $(PYTHON27) tests/run.py -j ${JOBS}
+	-pfexec $(PYTHON35) tests/run.py -j ${JOBS}
 
 FRC:
