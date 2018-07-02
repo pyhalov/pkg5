@@ -4811,3 +4811,6 @@ in the environment or by setting simulate_cmdpath in DebugValues.""")
                         return True
 
                 return __allow_action_dehydrate
+
+# Vim hints
+# vim:ts=8:sw=8:et:fdm=marker

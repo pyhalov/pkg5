@@ -1606,3 +1606,6 @@ class BlendedConfig(object):
             __del_publisher, __publisher_iteritems, __publisher_keys,
             __publisher_values, __publisher_iter,
             doc="A dict mapping publisher prefixes to publisher objects")
+
+# Vim hints
+# vim:ts=8:sw=8:et:fdm=marker

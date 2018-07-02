@@ -1781,3 +1781,6 @@ if __name__ == "__main__":
                 except:
                         pass
         sys.exit(__ret)
+
+# Vim hints
+# vim:ts=8:sw=8:et:fdm=marker

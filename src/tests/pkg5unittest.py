@@ -4655,3 +4655,6 @@ class HttpDepotController(ApacheController):
                         return False
                 return True
 
+
+# Vim hints
+# vim:ts=8:sw=8:et:fdm=marker

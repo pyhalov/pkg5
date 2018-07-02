@@ -5910,3 +5910,6 @@ def image_create(pkg_client_name, version_id, root, imgtype, is_zone,
         img.cleanup_downloads()
 
         return api_inst
+
+# Vim hints
+# vim:ts=8:sw=8:et:fdm=marker

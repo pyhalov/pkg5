@@ -1175,3 +1175,6 @@ class TransportRequest(object):
                 self.proxy = proxy
                 self.runtime_proxy = runtime_proxy
                 self.system = system
+
+# Vim hints
+# vim:ts=8:sw=8:et:fdm=marker

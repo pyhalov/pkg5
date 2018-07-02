@@ -533,3 +533,6 @@ def list_running_zones():
                         rzdict[z_name] = z_path
 
         return rzdict
+
+# Vim hints
+# vim:ts=8:sw=8:et:fdm=marker
