@@ -80,6 +80,7 @@ def usage():
    -s <regexp>    Run tests starting at regexp
    -t             Generate timing info file
    -v             Verbose output
+   -V             Do not redirect stdout
    -x             Stop after the first baseline mismatch
    -z <port>      Lowest port the test suite should use
 """, file=sys.stderr)
@@ -118,7 +119,7 @@ if __name__ == "__main__":
                 # If you add options here, you need to also update setup.py's
                 # test_func to include said options.
                 #
-                opts, pargs = getopt.getopt(sys.argv[1:], "a:c:dfghj:lpqtuvxb:o:s:z:",
+                opts, pargs = getopt.getopt(sys.argv[1:], "a:c:dfghj:lpqtuvVxb:o:s:z:",
                     ["generate-baseline", "parseable", "port", "timing",
                     "verbose", "baseline-file", "only"])
         except getopt.GetoptError as e:
@@ -132,6 +133,7 @@ if __name__ == "__main__":
         generate = False
         onlyval = []
         output = ""
+        sstdout = False
         bailonfail = False
         startattest = ""
         timing_file = False
@@ -147,6 +149,8 @@ if __name__ == "__main__":
         for opt, arg in opts:
                 if opt == "-v":
                         output = "v"
+                elif opt == "-V":
+                        sstdout = True
                 elif opt == "-p":
                         output = "p"
                 elif opt == "-c":
@@ -203,11 +207,11 @@ from pkg5unittest import OUTPUT_DOTS, OUTPUT_VERBOSE, OUTPUT_PARSEABLE
 
 # Verify that CLIENT_API_VERSION is compatible.
 if pkg5unittest.CLIENT_API_VERSION not in api.COMPATIBLE_API_VERSIONS:
-        print("Test suite needs to be syned with the pkg bits.")
+        print("Test suite needs to be synced with the pkg bits.")
         sys.exit(1)
-    
+
 osname = platform.uname()[0].lower()
-arch = 'unknown' 
+arch = 'unknown'
 if osname == 'sunos':
         arch = platform.processor()
 elif osname == 'linux':
@@ -461,11 +465,15 @@ if __name__ == "__main__":
         baseline = baseline.BaseLine(bfile, generate)
         baseline.load()
 
-        # Make sure we capture stdout
-        testlogfd, testlogpath = tempfile.mkstemp(suffix='.pkg-test.log')
-        testlogfp = os.fdopen(testlogfd, "w")
-        print("# logging to {0}".format(testlogpath))
-        sys.stdout = testlogfp
+        if sstdout:
+                testlogfp = None
+        else:
+                # Make sure we capture stdout
+                testlogfd, testlogpath = tempfile.mkstemp(
+                    suffix='.pkg-test.log')
+                testlogfp = os.fdopen(testlogfd, "w")
+                print("# logging to {0}".format(testlogpath))
+                sys.stdout = testlogfp
 
         if timing_file:
                 timing_file = os.path.join(os.getcwd(), "timing_info.txt")
@@ -517,7 +525,8 @@ if __name__ == "__main__":
                 if res.mismatches:
                         exitval = 1
 
-        testlogfp.close()
+        if testlogfp:
+                testlogfp.close()
 
         # Update baseline results and display mismatches (failures)
         baseline.store()
@@ -555,7 +564,7 @@ if __name__ == "__main__":
                         generate_coverage(coverage_format, None,
                             proto + omits, "cov_tests")
                 except Exception as e:
-                        print(e, file=sys.stderr)                        
+                        print(e, file=sys.stderr)
                         exitval = 1
 
                 # The coverage data file and report are most likely owned by
