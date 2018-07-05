@@ -2918,7 +2918,10 @@ def set_fd_limits(printer=None):
                 printer = emsg
         try:
                 (soft, hard) = resource.getrlimit(resource.RLIMIT_NOFILE)
-                soft = max(hard, FILE_DESCRIPTOR_LIMIT)
+                if (hard == resource.RLIM_INFINITY):
+                    soft = resource.RLIM_INFINITY
+                else:
+                    soft = max(hard, FILE_DESCRIPTOR_LIMIT)
                 resource.setrlimit(resource.RLIMIT_NOFILE, (soft, hard))
         except (OSError, ValueError) as e:
                 printer(_("unable to set open file limit to {0}; please "
