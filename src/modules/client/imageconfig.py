@@ -65,6 +65,7 @@ USE_SYSTEM_REPO = "use-system-repo"
 CHECK_CERTIFICATE_REVOCATION = "check-certificate-revocation"
 DEFAULT_RECURSE = "default-recurse"
 DEFAULT_CONCURRENCY = "recursion-concurrency"
+AUTO_BE_NAME = "auto-be-name"
 
 default_policies = {
     BE_POLICY: "default",
@@ -203,6 +204,9 @@ class ImageConfig(cfg.FileConfig):
                     cfg.PropInt(DEFAULT_CONCURRENCY,
                         minimum=0,
                         default=default_properties[DEFAULT_CONCURRENCY]),
+                    cfg.Property(AUTO_BE_NAME,
+                        default=None,
+                        value_map=_val_map_none),
                 ]),
                 cfg.PropertySection("facet", properties=[
                     cfg.PropertyTemplate("^facet\..*", prop_type=cfg.PropBool),
