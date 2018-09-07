@@ -68,9 +68,13 @@ clobber: $(SUBDIRS)
 # run pylint as part of the install target.
 # it's the best way to ensure things stay pylint clean.
 #
-install: $(SUBDIRS)
-	$(PYTHON27) setup.py install
-	$(PYTHON35) setup.py install
+install: $(SUBDIRS) install2 install3
+
+install2: $(SUBDIRS)
+	CC=$(CC) $(PYTHON27) setup.py install
+
+install3:
+	CC=$(CC) $(PYTHON35) setup.py install
 
 lint:
 	$(PYTHON27) setup.py lint
@@ -100,8 +104,10 @@ packages: install
 		PATH=$$(hg root 2>/dev/null || git rev-parse --show-toplevel)/proto/root_$$(uname -p)/usr/bin:$$PATH \
 		PYTHONPATH=$$(hg root 2>/dev/null || git rev-parse --show-toplevel)/proto/root_$$(uname -p)/usr/lib/python2.7/vendor-packages
 
-test: install
+test: install test2 test3
+test2:
 	-pfexec $(PYTHON27) tests/run.py -j ${JOBS}
+test3:
 	-pfexec $(PYTHON35) tests/run.py -j ${JOBS}
 
 FRC:
