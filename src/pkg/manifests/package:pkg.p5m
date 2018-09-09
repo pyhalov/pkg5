@@ -159,7 +159,7 @@ file path=$(PYDIRVP)/pkg/config.py pkg.depend.bypass-generate=.*six.*
 file path=$(PYDIRVP)/pkg/cpiofile.py pkg.depend.bypass-generate=.*six.*
 file path=$(PYDIRVP)/pkg/dependency.py
 file path=$(PYDIRVP)/pkg/depotcontroller.py pkg.depend.bypass-generate=.*six.*
-file path=$(PYDIRVP)/pkg/digest.py
+file path=$(PYDIRVP)/pkg/digest.py pkg.depend.bypass-generate=.*sha512_t.*
 file path=$(PYDIRVP)/pkg/elf.so
 file path=$(PYDIRVP)/pkg/facet.py pkg.depend.bypass-generate=.*six.*
 dir  path=$(PYDIRVP)/pkg/file_layout

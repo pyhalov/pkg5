@@ -140,7 +140,7 @@ file path=$(PY35DIRVP)/pkg/config.py pkg.depend.bypass-generate=.*six.*
 file path=$(PY35DIRVP)/pkg/cpiofile.py pkg.depend.bypass-generate=.*six.*
 file path=$(PY35DIRVP)/pkg/dependency.py
 file path=$(PY35DIRVP)/pkg/depotcontroller.py pkg.depend.bypass-generate=.*six.*
-file path=$(PY35DIRVP)/pkg/digest.py
+file path=$(PY35DIRVP)/pkg/digest.py pkg.depend.bypass-generate=.*sha512_t.*
 file path=$(PY35DIRVP)/pkg/elf.cpython-35m.so
 file path=$(PY35DIRVP)/pkg/facet.py
 dir  path=$(PY35DIRVP)/pkg/file_layout
