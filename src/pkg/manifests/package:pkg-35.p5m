@@ -38,6 +38,7 @@ file path=$(PY35DIRVP)/pkg-0.1-py3.5.egg-info
 file path=$(PY35DIRVP)/pkg/__init__.py
 file path=$(PY35DIRVP)/pkg/_arch.cpython-35m.so
 file path=$(PY35DIRVP)/pkg/_pspawn.cpython-35m.so
+file path=$(PY35DIRVP)/pkg/_sha512_t.cpython-35m.so
 file path=$(PY35DIRVP)/pkg/_sysattr.cpython-35m.so
 file path=$(PY35DIRVP)/pkg/_syscallat.cpython-35m.so
 file path=$(PY35DIRVP)/pkg/_varcet.cpython-35m.so
@@ -140,7 +141,7 @@ file path=$(PY35DIRVP)/pkg/config.py pkg.depend.bypass-generate=.*six.*
 file path=$(PY35DIRVP)/pkg/cpiofile.py pkg.depend.bypass-generate=.*six.*
 file path=$(PY35DIRVP)/pkg/dependency.py
 file path=$(PY35DIRVP)/pkg/depotcontroller.py pkg.depend.bypass-generate=.*six.*
-file path=$(PY35DIRVP)/pkg/digest.py pkg.depend.bypass-generate=.*sha512_t.*
+file path=$(PY35DIRVP)/pkg/digest.py
 file path=$(PY35DIRVP)/pkg/elf.cpython-35m.so
 file path=$(PY35DIRVP)/pkg/facet.py
 dir  path=$(PY35DIRVP)/pkg/file_layout
@@ -215,6 +216,7 @@ file path=$(PY35DIRVP)/pkg/server/query_parser.py
 file path=$(PY35DIRVP)/pkg/server/repository.py pkg.depend.bypass-generate=.*
 file path=$(PY35DIRVP)/pkg/server/transaction.py \
     pkg.depend.bypass-generate=.*six.*
+file path=$(PY35DIRVP)/pkg/sha512_t.py
 file path=$(PY35DIRVP)/pkg/smf.py pkg.depend.bypass-generate=.*six.*
 file path=$(PY35DIRVP)/pkg/solver.cpython-35m.so
 file path=$(PY35DIRVP)/pkg/sysattr.py
