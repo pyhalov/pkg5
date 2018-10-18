@@ -21,6 +21,7 @@
 # Copyright (c) 2010, 2016, Oracle and/or its affiliates. All rights reserved.
 #
 
+<transform file path=usr/bin/ -> set pkg.depend.bypass-generate .*six.*>
 set name=pkg.fmri value=pkg:/package/pkg@$(PKGVERS)
 set name=pkg.summary value="Image Packaging System"
 set name=pkg.description \
@@ -272,7 +273,6 @@ file path=usr/bin/pkgrepo
 file path=usr/bin/pkgsend
 file path=usr/bin/pkgsign
 file path=usr/bin/pkgsurf
-<transform file path=usr/bin/ -> set pkg.depend.bypass-generate .*six.*>
 dir  path=usr/lib
 file path=usr/lib/pkg.depotd mode=0755 pkg.depend.bypass-generate=.*
 dir  path=usr/share
@@ -493,7 +493,9 @@ depend type=require fmri=library/python/jsonrpclib
 depend type=require fmri=library/python/jsonschema
 depend type=require fmri=library/python/mako
 depend type=require fmri=library/python/ply
+depend type=require fmri=library/python/portend
 depend type=require fmri=library/python/pybonjour
 depend type=require fmri=library/python/pycurl
 depend type=require fmri=library/python/pyopenssl
 depend type=require fmri=library/python/simplejson@3.6.5
+depend type=require fmri=library/python/six
