@@ -2275,7 +2275,7 @@ def apply_hot_fix(**args):
         pubargs['api_inst'] = args['api_inst']
         pubargs['op'] = 'set-publisher'
         pubargs['add_origins'] = set([origin])
-        pubargs['pargs'] = ['omnios']
+        pubargs['pargs'] = ['openindiana.org']
 
         pubargs['ssl_key'] = None
         pubargs['unset_ca_certs'] = []
