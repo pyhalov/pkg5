@@ -1,37 +1,20 @@
-    pkg:/library/python/cffi-27
     pkg:/library/python/cffi-35
-    pkg:/library/python/cherrypy-27
     pkg:/library/python/cherrypy-35
-    pkg:/library/python/coverage-27
     pkg:/library/python/coverage-35
-    pkg:/library/python/jsonrpclib-27
     pkg:/library/python/jsonrpclib-35
-    pkg:/library/python/cryptography-27
     pkg:/library/python/cryptography-35
-    pkg:/library/python/jsonrpclib-27
     pkg:/library/python/jsonrpclib-35
-    pkg:/library/python/jsonschema-27
     pkg:/library/python/jsonschema-35
-    pkg:/library/python/mako-27
     pkg:/library/python/mako-35
-    pkg:/library/python/ply-27
     pkg:/library/python/ply-35
-    pkg:/library/python/portend-27
     pkg:/library/python/portend-35
-    pkg:/library/python/prettytable-27
     pkg:/library/python/prettytable-35
-    pkg:/library/python/pybonjour-27
     pkg:/library/python/pybonjour-35
-    pkg:/library/python/pycurl-27
     pkg:/library/python/pycurl-35
-    pkg:/library/python/pyopenssl-27
     pkg:/library/python/pyopenssl-35
-    pkg:/library/python/simplejson-27
     pkg:/library/python/simplejson-35
-    pkg:/library/python/six-27
     pkg:/library/python/six-35
     pkg:/package/svr4
-    pkg:/runtime/python-27
     pkg:/runtime/python-35
     pkg:/service/network/dns/mdns
     pkg:/system/header
@@ -57,7 +40,7 @@
     pkg:/text/locale
     pkg:/text/tidy
     pkg:/web/server/apache-24
-    pkg:/web/server/apache-24/module/apache-wsgi-27
+    pkg:/web/server/apache-24/module/apache-wsgi-35
     pkg:/web/wget
     pkg:/SUNWcs
     pkg:/system/zones

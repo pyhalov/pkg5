@@ -27,7 +27,7 @@
 set name=pkg.fmri value=pkg:/package/pkg@$(PKGVERS)
 set name=pkg.summary value="Image Packaging System"
 set name=pkg.description \
-    value="The Image Packaging System (IPS), or pkg(5), is the software delivery system used on Oracle Solaris.  This package contains the core command-line components and pkg.depotd server."
+    value="The Image Packaging System (IPS), or pkg(5), is the software delivery system used on OpenIndiana.  This package contains the core command-line components and pkg.depotd server."
 set name=info.classification \
     value=org.opensolaris.category.2008:System/Packaging
 set name=org.opensolaris.smf.fmri \
@@ -37,37 +37,20 @@ set name=variant.arch value=$(ARCH)
 dir  path=$(PYDIR)
 dir  path=$(PYDIRVP)
 dir  path=$(PYDIRVP)/pkg
-file path=$(PYDIRVP)/pkg-0.1-py2.7.egg-info
-dir  path=$(PYDIRVP)/pkg/64
-file path=$(PYDIRVP)/pkg/64/_arch.so
-file path=$(PYDIRVP)/pkg/64/_pspawn.so
-file path=$(PYDIRVP)/pkg/64/_sha512_t.so
-file path=$(PYDIRVP)/pkg/64/_sysattr.so
-file path=$(PYDIRVP)/pkg/64/_syscallat.so
-file path=$(PYDIRVP)/pkg/64/_varcet.so
-file path=$(PYDIRVP)/pkg/64/elf.so
-file path=$(PYDIRVP)/pkg/64/solver.so
+file path=$(PYDIRVP)/pkg-0.1-py3.5.egg-info
 file path=$(PYDIRVP)/pkg/__init__.py
-file path=$(PYDIRVP)/pkg/_arch.so
-file path=$(PYDIRVP)/pkg/_pspawn.so
-file path=$(PYDIRVP)/pkg/_sha512_t.so
-file path=$(PYDIRVP)/pkg/_sysattr.so
-file path=$(PYDIRVP)/pkg/_syscallat.so
-file path=$(PYDIRVP)/pkg/_varcet.so
+file path=$(PYDIRVP)/pkg/_arch.cpython-35m.so
+file path=$(PYDIRVP)/pkg/_pspawn.cpython-35m.so
+file path=$(PYDIRVP)/pkg/_sha512_t.cpython-35m.so
+file path=$(PYDIRVP)/pkg/_sysattr.cpython-35m.so
+file path=$(PYDIRVP)/pkg/_syscallat.cpython-35m.so
+file path=$(PYDIRVP)/pkg/_varcet.cpython-35m.so
 dir  path=$(PYDIRVP)/pkg/actions
-#
-# We ship a 64-bit version of _actions.so because it's
-# needed by the sysrepo_p5p which is a mod_wsgi application
-# that runs in a 64-bit apache instance.
-#
-dir  path=$(PYDIRVP)/pkg/actions/64
-file path=$(PYDIRVP)/pkg/actions/64/_actions.so
-file path=$(PYDIRVP)/pkg/actions/64/_common.so
 # pkgdepend doesn't understand the relative import syntax "from .x import y",
 # so we have to bypass generating dependencies on those files.
 file path=$(PYDIRVP)/pkg/actions/__init__.py pkg.depend.bypass-generate=.*
-file path=$(PYDIRVP)/pkg/actions/_actions.so
-file path=$(PYDIRVP)/pkg/actions/_common.so
+file path=$(PYDIRVP)/pkg/actions/_actions.cpython-35m.so
+file path=$(PYDIRVP)/pkg/actions/_common.cpython-35m.so
 file path=$(PYDIRVP)/pkg/actions/attribute.py pkg.depend.bypass-generate=.*
 file path=$(PYDIRVP)/pkg/actions/depend.py pkg.depend.bypass-generate=.*
 file path=$(PYDIRVP)/pkg/actions/directory.py pkg.depend.bypass-generate=.*
@@ -162,7 +145,7 @@ file path=$(PYDIRVP)/pkg/cpiofile.py pkg.depend.bypass-generate=.*six.*
 file path=$(PYDIRVP)/pkg/dependency.py
 file path=$(PYDIRVP)/pkg/depotcontroller.py pkg.depend.bypass-generate=.*six.*
 file path=$(PYDIRVP)/pkg/digest.py
-file path=$(PYDIRVP)/pkg/elf.so
+file path=$(PYDIRVP)/pkg/elf.cpython-35m.so
 file path=$(PYDIRVP)/pkg/facet.py pkg.depend.bypass-generate=.*six.*
 dir  path=$(PYDIRVP)/pkg/file_layout
 file path=$(PYDIRVP)/pkg/file_layout/__init__.py
@@ -239,7 +222,7 @@ file path=$(PYDIRVP)/pkg/server/transaction.py \
     pkg.depend.bypass-generate=.*six.*
 file path=$(PYDIRVP)/pkg/sha512_t.py
 file path=$(PYDIRVP)/pkg/smf.py pkg.depend.bypass-generate=.*six.*
-file path=$(PYDIRVP)/pkg/solver.so
+file path=$(PYDIRVP)/pkg/solver.cpython-35m.so
 file path=$(PYDIRVP)/pkg/sysattr.py pkg.depend.bypass-generate=.*six.*
 file path=$(PYDIRVP)/pkg/syscallat.py pkg.depend.bypass-generate=.*six.*
 file path=$(PYDIRVP)/pkg/sysvpkg.py
@@ -486,7 +469,6 @@ dir  path=var/log/pkg/mirror
 group groupname=pkg5srv gid=97
 user username=pkg5srv gcos-field="pkg(5) server UID" group=pkg5srv password=NP \
     uid=97
-legacy pkg=SUNWipkg version=0.0.0
 license lic_gustaebel license="MIT (Lars Gustaebel)" \
     com.oracle.info.description="portions of the tarfile module from Python 2.4" \
     com.oracle.info.name=tarfile com.oracle.info.tpno=17819 \
@@ -494,22 +476,23 @@ license lic_gustaebel license="MIT (Lars Gustaebel)" \
 license lic_minisat license="MIT (MiniSAT)" \
     com.oracle.info.description="MiniSAT 1.14.1" com.oracle.info.name=MiniSAT \
     com.oracle.info.tpno=17867 com.oracle.info.version=1.14.1
-license cr_Oracle license=cr_Oracle
-#depend type=group fmri=package/pkg/zones-proxy #    variant.opensolaris.zone=nonglobal
+license lic_CDDL license=CDDL
+depend type=group fmri=package/pkg/zones-proxy variant.opensolaris.zone=nonglobal
 # cross zone dependency on linked image metadata
 #depend type=parent fmri=feature/package/dependency/self #    variant.opensolaris.zone=nonglobal
 depend type=require fmri=crypto/ca-certificates
 # CFFI import is done in C code, so it isn't picked up by pkgdepend
-depend type=require fmri=library/python/cffi
-depend type=require fmri=library/python/cherrypy
-depend type=require fmri=library/python/cryptography
-depend type=require fmri=library/python/jsonrpclib
-depend type=require fmri=library/python/jsonschema
-depend type=require fmri=library/python/mako
-depend type=require fmri=library/python/ply
-depend type=require fmri=library/python/portend
-depend type=require fmri=library/python/pybonjour
-depend type=require fmri=library/python/pycurl
-depend type=require fmri=library/python/pyopenssl
-depend type=require fmri=library/python/simplejson@3.6.5
-depend type=require fmri=library/python/six
+depend type=require fmri=library/python/cffi-35
+depend type=require fmri=library/python/cherrypy-35
+depend type=require fmri=library/python/cryptography-35
+depend type=require fmri=library/python/jsonrpclib-35
+depend type=require fmri=library/python/jsonschema-35
+depend type=require fmri=library/python/mako-35
+depend type=require fmri=library/python/ply-35
+depend type=require fmri=library/python/portend-35
+depend type=require fmri=library/python/prettytable-35
+depend type=require fmri=library/python/pybonjour-35
+depend type=require fmri=library/python/pycurl-35
+depend type=require fmri=library/python/pyopenssl-35
+depend type=require fmri=library/python/simplejson-35@3.6.5
+depend type=require fmri=library/python/six-35
