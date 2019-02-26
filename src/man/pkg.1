@@ -3039,47 +3039,16 @@ The following properties define characteristics of the image. These properties s
 (string) A template to be used for building a name for a new boot environment
 if one is required as a result of an update. Without this property being set,
 and assuming that the \fB--be-name\fR option is not provided, the new BE will
-be named after the current, with an incrementing numerical suffix. If an update
-requires a new boot environment but is not associated with an OmniOS release
-then the template will not be used. The \fB--be-name\fR option always overrides
-this property. The template can contain the following tokens; see the
+be named after the current, with an incrementing numerical suffix.
+The \fB--be-name\fR option always overrides
+this property. If template starts from "time:" prefix, remaining part is interpreted
+as string in \fBstrftime\fR(3C)-compatible format. Other values are not supported
+on OpenIndiana.
+
 "Examples" section for some suggested values.
 
 .sp
-.ne 2
-.mk
-.na
-\fB%d\fR
-.ad
-.sp .6
-.RS 4n
-The date of the update being installed - \fIYYYY.MM.DD\R
-.RE
-
-.sp
-.ne 2
-.mk
-.na
-\fB%D\fR
-.ad
-.sp .6
-.RS 4n
-The date of the update being installed - \fIYYYYMMDD\R
-.RE
-
-.sp
-.ne 2
-.mk
-.na
-\fB%r\fR
-.ad
-.sp .6
-.RS 4n
-The release being installed, without the leading \fIr\fR - e.g. \fB151026c\fR
-.RE
-
-.sp
-Default value: \fBNone\fR
+Default value: \fB"time:openindiana-%Y:%m:%d"\fR
 .RE
 
 .sp
@@ -4045,18 +4014,7 @@ name and date, for example \fIomnios_r151026k_20180716\fR
 .sp
 .in +2
 .nf
-$ \fBpkg set-property auto-be-name omnios_r%r_%D\fR
-.fi
-.in -2
-.sp
-
-.LP
-For bloody releases, the release name does not change and so the \fI%r\fR
-token is not available:
-.sp
-.in +2
-.nf
-$ \fBpkg set-property auto-be-name bloody_%D\fR
+$ \fBpkg set-property auto-be-name "time:openindiana_%Y:%m:%d-%H:%M"\fR
 .fi
 .in -2
 .sp

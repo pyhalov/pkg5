@@ -91,6 +91,7 @@ default_properties = {
         # Path default is intentionally relative for this case.
         "trust-anchor-directory": os.path.join("etc", "certs", "CA"),
         DEFAULT_CONCURRENCY: 1,
+        AUTO_BE_NAME: "time:openindiana-%Y:%m:%d",
 }
 
 # Assume the repository metadata should be checked no more than once every
@@ -205,7 +206,7 @@ class ImageConfig(cfg.FileConfig):
                         minimum=0,
                         default=default_properties[DEFAULT_CONCURRENCY]),
                     cfg.Property(AUTO_BE_NAME,
-                        default=None,
+                        default=default_properties[AUTO_BE_NAME],
                         value_map=_val_map_none),
                 ]),
                 cfg.PropertySection("facet", properties=[
