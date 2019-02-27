@@ -207,6 +207,7 @@ dir  path=$(PY35DIRVP)/pkg/server
 file path=$(PY35DIRVP)/pkg/server/__init__.py
 file path=$(PY35DIRVP)/pkg/server/api.py
 file path=$(PY35DIRVP)/pkg/server/api_errors.py
+file path=$(PY35DIRVP)/pkg/server/catalog.py
 file path=$(PY35DIRVP)/pkg/server/depot.py pkg.depend.bypass-generate=.*
 file path=$(PY35DIRVP)/pkg/server/face.py pkg.depend.bypass-generate=.*six.*
 file path=$(PY35DIRVP)/pkg/server/feed.py pkg.depend.bypass-generate=.*six.*
@@ -219,6 +220,7 @@ file path=$(PY35DIRVP)/pkg/solver.cpython-35m.so
 file path=$(PY35DIRVP)/pkg/sysattr.py
 file path=$(PY35DIRVP)/pkg/syscallat.py
 file path=$(PY35DIRVP)/pkg/sysvpkg.py
+file path=$(PY35DIRVP)/pkg/updatelog.py
 file path=$(PY35DIRVP)/pkg/variant.py
 file path=$(PY35DIRVP)/pkg/version.py pkg.depend.bypass-generate=.*six.*
 # CFFI import is done in C code, so it isn't picked up by pkgdepend

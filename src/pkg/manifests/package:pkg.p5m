@@ -226,6 +226,7 @@ dir  path=$(PYDIRVP)/pkg/server
 file path=$(PYDIRVP)/pkg/server/__init__.py
 file path=$(PYDIRVP)/pkg/server/api.py pkg.depend.bypass-generate=.*six.*
 file path=$(PYDIRVP)/pkg/server/api_errors.py
+file path=$(PYDIRVP)/pkg/server/catalog.py
 file path=$(PYDIRVP)/pkg/server/depot.py pkg.depend.bypass-generate=.*
 file path=$(PYDIRVP)/pkg/server/face.py pkg.depend.bypass-generate=.*six.*
 file path=$(PYDIRVP)/pkg/server/feed.py pkg.depend.bypass-generate=.*six.*
