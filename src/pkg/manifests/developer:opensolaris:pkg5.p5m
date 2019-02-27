@@ -41,11 +41,11 @@ depend type=require fmri=pkg:/library/python/cryptography-35
 depend type=require fmri=pkg:/library/python/jsonrpclib-27
 depend type=require fmri=pkg:/library/python/jsonrpclib-35
 depend type=require fmri=pkg:/library/python/jsonschema-27
+depend type=require fmri=pkg:/library/python/jsonschema-35
 depend type=require fmri=pkg:/library/python/mako-27
+depend type=require fmri=pkg:/library/python/pep8
 depend type=require fmri=pkg:/library/python/pyopenssl-27
 depend type=require fmri=pkg:/library/python/simplejson-27
-depend type=require fmri=pkg:/library/python/jsonschema-35
-depend type=require fmri=pkg:/library/python/pep8
 depend type=require fmri=pkg:/library/python/six-27
 depend type=require fmri=pkg:/library/python/six-35
 depend type=require fmri=pkg:/package/svr4

@@ -26,6 +26,8 @@
 #include <Python.h>
 
 #if PY_MAJOR_VERSION >= 3
+	#undef PyBytes_AS_STRING
+	#undef PyBytes_AsString
 	#define PyBytes_AS_STRING PyUnicode_AsUTF8
 	#define PyBytes_AsString PyUnicode_AsUTF8
 #endif

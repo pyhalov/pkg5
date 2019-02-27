@@ -553,10 +553,11 @@ PyMethodDef msat_methods[] = {
 	{ NULL, NULL, 0, NULL}
 };
 
-
+#if PY_MAJOR_VERSION < 3
 static PyMethodDef no_module_methods[] = {
 	{NULL} /* Sentinel */
 };
+#endif
 
 #if PY_MAJOR_VERSION >= 3
 static struct PyModuleDef solvermodule ={

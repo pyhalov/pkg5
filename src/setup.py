@@ -442,6 +442,7 @@ solver_srcs = [
 solver_link_args = ["-lm", "-lc"]
 if osname == 'sunos':
         solver_link_args = ["-ztext"] + solver_link_args
+solver_compile_args = ["-fno-strict-aliasing"]
 
 # Runs lint on the extension module source code
 class pylint_func(Command):
@@ -1564,7 +1565,7 @@ ext_modules = [
                 'solver',
                 solver_srcs,
                 include_dirs = include_dirs + ["."],
-                extra_compile_args = compile_args,
+                extra_compile_args = compile_args + solver_compile_args,
                 extra_link_args = link_args + solver_link_args,
                 define_macros = [('_FILE_OFFSET_BITS', '64')],
                 build_64 = True

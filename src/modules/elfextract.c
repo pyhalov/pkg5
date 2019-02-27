@@ -309,7 +309,7 @@ readhash(int fd, SHA1_CTX *shc, SHA256_CTX *shc2, off_t offset, off_t size,
 	}
 
 	do {
-		n = MIN(size, sizeof (hashbuf));
+		n = MIN(size, (off_t) sizeof (hashbuf));
 		if ((rbytes = read(fd, hashbuf, n)) == -1) {
 			PyErr_SetFromErrno(PyExc_IOError);
 			return (-1);
@@ -347,7 +347,8 @@ getdynamic(int fd, int sha1, int sha256)
 	char		*name = NULL;
 	size_t		sh_str = 0;
 	size_t		vernum = 0, verdefnum = 0;
-	int		t = 0, num_dyn = 0, dynstr = -1;
+	unsigned int	t = 0, num_dyn = 0;
+	int		dynstr = -1;
 
 	SHA1_CTX	shc;
         SHA256_CTX      shc2;

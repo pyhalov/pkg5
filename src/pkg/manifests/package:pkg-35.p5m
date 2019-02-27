@@ -117,8 +117,7 @@ file path=$(PY35DIRVP)/pkg/client/pkgremote.py
 file path=$(PY35DIRVP)/pkg/client/plandesc.py
 file path=$(PY35DIRVP)/pkg/client/printengine.py
 file path=$(PY35DIRVP)/pkg/client/progress.py pkg.depend.bypass-generate=.*six.*
-file path=$(PY35DIRVP)/pkg/client/publisher.py \
-    pkg.depend.bypass-generate=.*
+file path=$(PY35DIRVP)/pkg/client/publisher.py pkg.depend.bypass-generate=.*
 file path=$(PY35DIRVP)/pkg/client/query_parser.py
 file path=$(PY35DIRVP)/pkg/client/rad_pkg.py
 file path=$(PY35DIRVP)/pkg/client/sigpolicy.py
