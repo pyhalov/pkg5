@@ -57,6 +57,7 @@ LoadModule dir_module libexec/mod_dir.so
 LoadModule env_module libexec/mod_env.so
 LoadModule log_config_module libexec/mod_log_config.so
 LoadModule mime_module libexec/mod_mime.so
+LoadModule mpm_worker_module libexec/mod_mpm_worker.so
 LoadModule proxy_module libexec/mod_proxy.so
 LoadModule proxy_connect_module libexec/mod_proxy_connect.so
 LoadModule proxy_http_module libexec/mod_proxy_http.so

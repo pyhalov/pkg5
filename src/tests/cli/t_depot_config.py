@@ -219,6 +219,7 @@ LoadModule authz_core_module libexec/mod_authz_core.so
 LoadModule dir_module libexec/mod_dir.so
 LoadModule headers_module libexec/mod_headers.so
 LoadModule log_config_module libexec/mod_log_config.so
+LoadModule mpm_worker_module libexec/mod_mpm_worker.so
 LoadModule rewrite_module libexec/mod_rewrite.so
 LoadModule ssl_module libexec/mod_ssl.so
 LoadModule status_module libexec/mod_status.so
