@@ -2550,7 +2550,7 @@ class _RepoStore(object):
                         broken_items.add((mpath, fmri))
 
                 progtrack.job_start(progtrack.JOB_REPO_FIX_REPO,
-		    goal=len(broken_items))
+                    goal=len(broken_items))
 
                 # keep a set of all the paths we've applied fixes to
                 fixed_paths = set()

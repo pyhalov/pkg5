@@ -318,10 +318,10 @@ def _make_list(opt):
 
 if __name__ == "__main__":
 
-	misc.setlocale(locale.LC_ALL, "", error)
-	gettext.install("pkg", "/usr/share/locale",
-	    codeset=locale.getpreferredencoding())
-	misc.set_fd_limits(printer=error)
+        misc.setlocale(locale.LC_ALL, "", error)
+        gettext.install("pkg", "/usr/share/locale",
+            codeset=locale.getpreferredencoding())
+        misc.set_fd_limits(printer=error)
 
         if six.PY3:
                 # disable ResourceWarning: unclosed file

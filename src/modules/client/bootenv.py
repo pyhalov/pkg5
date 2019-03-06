@@ -492,7 +492,7 @@ class BootEnv(object):
                         self.img.history.operation_new_be = self.be_name_clone
                         self.img.history.operation_new_be_uuid = self.be_name_clone_uuid
                         self.img.history.log_operation_end(release_notes=
-			    self.img.imageplan.pd.release_notes_name)
+                            self.img.imageplan.pd.release_notes_name)
 
                         if be.beUnmount(self.be_name_clone) != 0:
                                 logger.error(_("unable to unmount BE "
@@ -718,11 +718,11 @@ class BootEnvNull(object):
 
         @staticmethod
         def rename_be(orig_name, new_name):
-	        pass
+                pass
 
         @staticmethod
         def destroy_be(be_name):
-	        pass
+                pass
 
         @staticmethod
         def set_default_be(be_name):

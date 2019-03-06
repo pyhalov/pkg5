@@ -77,8 +77,8 @@ try:
         import pkg.portable
         from pkg.misc import emsg, PipeError
         from pkg.actions.generic import quote_attr_value
-	from pkg.client.pkgdefs import (EXIT_OK, EXIT_OOPS, EXIT_BADOPT,
-	    EXIT_PARTIAL)
+        from pkg.client.pkgdefs import (EXIT_OK, EXIT_OOPS, EXIT_BADOPT,
+            EXIT_PARTIAL)
 except KeyboardInterrupt:
         import sys
         sys.exit(EXIT_OOPS)
@@ -705,10 +705,10 @@ def fmt_file(in_file, out_file):
 
 
 if __name__ == "__main__":
-	misc.setlocale(locale.LC_ALL, "", error)
-	gettext.install("pkg", "/usr/share/locale",
-	    codeset=locale.getpreferredencoding())
-	misc.set_fd_limits(printer=error)
+        misc.setlocale(locale.LC_ALL, "", error)
+        gettext.install("pkg", "/usr/share/locale",
+            codeset=locale.getpreferredencoding())
+        misc.set_fd_limits(printer=error)
 
         if six.PY3:
                 # disable ResourceWarning: unclosed file

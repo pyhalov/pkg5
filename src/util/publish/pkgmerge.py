@@ -51,8 +51,8 @@ try:
 
         from functools import reduce
         from pkg.misc import PipeError, emsg, msg
-	from pkg.client.pkgdefs import (EXIT_OK, EXIT_OOPS, EXIT_BADOPT,
-	    EXIT_PARTIAL)
+        from pkg.client.pkgdefs import (EXIT_OK, EXIT_OOPS, EXIT_BADOPT,
+            EXIT_PARTIAL)
         from six.moves.urllib.parse import quote
 except KeyboardInterrupt:
         import sys

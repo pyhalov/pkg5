@@ -2446,7 +2446,7 @@ class ImagePlan(object):
                                                     "{} has invalid manifest "
                                                     "line:".format(
                                                     fmristr),
-						    "    '{}'".format(actstr),
+                                                    "    '{}'".format(actstr),
                                                     "    '{}' != '{}'".format(
                                                         act.attrs[act.key_attr],
                                                         key
