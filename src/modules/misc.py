@@ -187,7 +187,7 @@ def copytree(src, dst):
                                 try:
                                         sock.bind(d_path)
                                         sock.close()
-                                except sock.error as _e:
+                                except socket.error as _e:
                                         # Store original exception so that the
                                         # real cause of failure can be raised if
                                         # this fails.
