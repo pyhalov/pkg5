@@ -44,7 +44,7 @@ are of three types:
          global zone as defined by dependencies in the packages;
 
   User
-         not yet fully functional for Oracle Solaris.
+         not yet fully functional for OpenIndiana.
 
 In general, images are created or cloned by other software (installers,
 |beadm|, |zonecfg|, etc) rather than directly by the user.  
@@ -57,10 +57,10 @@ packages.  Every package is represented by a *fault management resource
 identifier* (FMRI), consisting of a publisher, a name, and a version, with
 the scheme ‘``pkg``’.  For example::
 
-    pkg://solaris/system/library@0.5.11,5.11-0.175.0.0.0.2.1:20111019T082311Z
+    pkg://openindiana.org/system/library@0.5.11,5.11-2018.0.0.18233:20190417T022656Z
 
-Here, ‘``solaris``’ is the publisher, ‘``system/library``’ is the package
-name, and ‘``0.5.11,5.11-0.175.0.0.0.2.1:20111019T082311Z``’ is the version.
+Here, ‘``openindiana.org``’ is the publisher, ‘``system/library``’ is the package
+name, and ‘``0.5.11,5.11-2018.0.0.18233:20190417T022656Z``’ is the version.
 
 Package names are hierarchical with an arbitrary number of components
 separated by forward slash (‘``/``’) characters.  Package names form a
@@ -79,9 +79,9 @@ there is only a single leading slash, no publisher name is present, and the
 package name is considered complete, or ‘rooted’.
 
 Further abbreviation is possible by eliding leading components of package
-names.  For instance, ``/driver/network/ethernet/e1000g`` can be reduced to
-``network/ethernet/e1000g``, ``ethernet/e1000g``, or even simply
-``e1000g``.  Note that such abbreviation mighy cause the packaging client to
+names.  For instance, ``/driver/network/e1000g`` can be reduced to
+``network/e1000g``, or even simply ``e1000g``.
+Note that such abbreviation mighy cause the packaging client to
 complain about ambiguous package names, in which case disambiguation can
 always be achieved by specifying the full, rooted name.  Typically package
 names are chosen to reduce possible ambiguities, even when referred to
@@ -98,7 +98,7 @@ installed.  As explained below, versions themselves need not be complete.
 
 FMRIs can also be referred to with patterns, where an asterisk (‘``*``’)
 can match any portion of a package name.  Thus ``/driver/*/e1000g`` will
-expand to ``/driver/network/ethernet/e1000g``, as will ``/dri*00g``.
+expand to ``/driver/network/e1000g``, as will ``/dri*00g``.
 
 
 Version
@@ -112,16 +112,15 @@ forbidden, to allow for unambiguous sorting by package version.
 
 An example version is::
 
-    0.5.11,5.11-0.175.0.0.0.2.1:20111019T082311Z
+    0.5.11,5.11-2018.0.0.18233:20190417T022656Z
 
 The first part is the component version.  For components that are
-are developed as part of Oracle Solaris, this will represent the point
-in the release when this package last changed.  For a component with its
-own development life cycle, this sequence is the dotted release
-number, such as ‘``2.4.10``’.
+are provided by illumos-gate, this is the OS major.minor version.
+For a component with its own development life cycle, this sequence
+is the dotted release number, such as ‘``2.4.10``’.
 
 The second part, which if present must follow a comma, is the build
-version.  Oracle Solaris uses this to denote the release of the OS for
+version.  OpenIndiana uses this to denote the release of the OS for
 which the package was compiled.
 
 The third part, which if present must follow a dash, is the branch version,
@@ -152,7 +151,7 @@ fixes, etc.
 A version can also be the token ‘``latest``’, which is substituted for the
 latest version known.
 
-We discuss how Oracle Solaris implements versioning in *Chapter 13*.
+We discuss how OpenIndiana implements versioning in *Chapter 13*.
 
 Publisher
 ~~~~~~~~~
@@ -527,7 +526,7 @@ Set Actions
                            the ``pkg.fmri`` version.
 
      Some additional informational attributes, as well as some used by
-     Oracle Solaris are described in *Chapter 13*.
+     OpenIndiana are described in *Chapter 13*.
 
      An example of a ``set`` action is::
 
@@ -794,8 +793,8 @@ Legacy Actions
         legacy pkg=SUNWcsu arch=i386 category=system \
             desc="core software for a specific instruction-set architecture" \
             hotline="Please contact your local service provider" \
-            name="Core Solaris, (Usr)" vendor="Oracle Corporation" \
-            version=11.11,REV=2009.11.11 variant.arch=i386
+            name="Core Solaris, (Usr)" vendor=illumos \
+            version=11.11,REV=2009.11.11
 
 Signature Actions
 `````````````````

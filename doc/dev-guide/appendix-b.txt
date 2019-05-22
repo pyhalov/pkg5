@@ -207,9 +207,9 @@ occur::
 
         1 package delivers 'dir group=bin mode=0755 owner=root path=opt':
             pkg://mypublisher/mypkg@1.0,5.11-0:20111017T020042Z
-        3 packages deliver 'dir group=sys mode=0755 owner=root path=opt':
-            pkg://solaris/developer/build/onbld@0.5.11,5.11-0.175.0.0.0.1.0:20111012T010101Z
-            pkg://solaris/system/core-os@0.5.11,5.11-0.175.0.0.0.1.0:20111012T023456Z
+        2 packages deliver 'dir group=sys mode=0755 owner=root path=opt':
+            pkg://openindiana.org/developer/build/onbld@0.5.11,5.11-2018.0.0.18233:20190417T014131Z
+            pkg://openindiana.org/SUNWcs@0.5.11,5.11-2018.0.0.18233:20190417T022040Z
 
     These packages may not be installed together.  Any non-conflicting set may
     be, or the packages must be corrected before they can be installed.
@@ -217,7 +217,7 @@ occur::
 To catch the error before publishing the package, rather than at install-time,
 |pkglint| can be used with a reference repository::
 
-    $ pkglint -c ./cache -r file:///scratch/solaris-repo ./mypkg.mf.res
+    $ pkglint -c ./cache -r file:///scratch/oi-repo ./mypkg.mf.res
     Lint engine setup...
 
     PHASE                                          ITEMS
@@ -225,8 +225,8 @@ To catch the error before publishing the package, rather than at install-time,
     Starting lint run...
 
     WARNING opensolaris.manifest001.1 Missing attribute 'org.opensolaris.consolidation' in pkg:/mypkg@1.0,5.11
-    ERROR pkglint.dupaction007        path opt is reference-counted but has different attributes across 5
-    duplicates: group: bin -> mypkg group: sys -> developer/build/onbld system/core-os system/ldoms/ldomsmanager
+    ERROR pkglint.dupaction007        path opt is reference-counted but has different attributes across 3
+    duplicates: group: bin -> mypkg group: sys -> developer/build/onbld SUNWcs
 
 In particular, notice the error message it produces about /opt having incorrect
 attributes.  The extra ``ldomsmanager`` package that |pkglint|
@@ -259,5 +259,5 @@ detect potential errors when files from a different packaging system conflict.
 
 With these pitfalls in mind, and given the comprehensive package development
 tool chain in IPS, developing IPS packages instead of SVR4 packages is
-recommended for Oracle Solaris 11.
+recommended for OpenIndiana.
 

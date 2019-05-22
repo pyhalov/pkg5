@@ -30,7 +30,7 @@ A developer's guide
 
 .. class:: figure
 
-    |logo|
+    |oilogo|
 
 .. raw:: pdf
 
@@ -41,7 +41,7 @@ A developer's guide
 
       +--------------------------+--------------------+
       |                          |                    |
-      |     |ologo|              |    |version|       |
+      |                          |    |version|       |
       |                          |                    |
       +--------------------------+--------------------+
 
@@ -120,13 +120,13 @@ A developer's guide
 Preface
 -------
 
-        In Oracle Solaris 11 and onwards, system software is packaged with
+        In OpenIndiana system software is packaged with
         the Image Packaging System, or IPS.  IPS takes care of
         installing new software and upgrading that software.
 
         This manual is for developers and advanced administrators who want
         to better understand IPS, how to use it to package their own
-        software, and want to understand how Oracle Solaris is packaged with
+        software, and want to understand how OpenIndiana is packaged with
         IPS.
 
         Special attention is given to the underlying design
@@ -181,8 +181,8 @@ How this book is organized
         zones and discusses those cases where package developers should be
         aware of zones.
 
-        **Chapter 13**, *How IPS Features Are Used When Packaging the Oracle
-        Solaris OS*, describes how the packages for the operating system are
+        **Chapter 13**, *How IPS Features Are Used When Packaging the OpenIndiana
+        OS*, describes how the packages for the operating system are
         constructed and how the various dependency types in IPS are used to
         define working package sets.
 

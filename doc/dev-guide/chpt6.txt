@@ -147,9 +147,7 @@ package is uninstalled again.
 
 A good example of how to use these dependencies is to construct packages
 containing group dependencies on packages that are needed for typical uses
-of a system.  Some examples might be ``solaris-small-server``,
-``solaris-desktop`` or ``developer-gnu``.  A set of Oracle Solaris packages
-delivering group dependencies is shown in *Chapter 13*.
+of a system.
 
 The administrator could install all that apply and know that over subsequent
 updates to newer versions of the OS, the appropriate packages would be added
@@ -221,7 +219,7 @@ An example ``parent`` dependency is::
 ``incorporate``
 ```````````````
 
-The ``incorporate`` dependency is heavily used in Oracle Solaris to ensure that
+The ``incorporate`` dependency is heavily used in OpenIndiana to ensure that
 compatible versions of software are installed together.
 
 The basic mechanism is like that of an ``optional`` dependency, except
@@ -239,7 +237,7 @@ together and are not separately versioned, like much of the kernel.
 An example ``incorporate`` dependency is::
 
     depend type=incorporate \
-        fmri=pkg:/driver/network/ethernet/e1000g@0.5.11,5.11-0.175.0.0.0.2.1
+        fmri=pkg:/driver/network/e1000g@0.5.11,5.11-2018.0.0.18233
 
 
 ``exclude``
@@ -270,7 +268,7 @@ above, packages can define the ways in which they are allowed to be upgraded.
 In general, we often desire that a group of packages installed on a system
 be supported and upgraded as a group: Either all packages in the group are
 updated, or none of the packages in the group are updated. As mentioned earlier,
-this is the reason for using the ``incorporate`` dependency in Oracle Solaris.
+this is the reason for using the ``incorporate`` dependency in OpenIndiana.
 
 The following three partial package manifests show the relationship
 between the ``foo`` and ``bar`` packages and the ``myincorp`` incorporation

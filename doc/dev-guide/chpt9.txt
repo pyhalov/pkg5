@@ -40,7 +40,7 @@ the package manifest with the correct *actuator* in order to cause that system
 change to occur.
 
 As discussed in *Chapter 1*, some system changes are needed to employ the
-*software self-assembly* concept used by Oracle Solaris and IPS, but system
+*software self-assembly* concept used by OpenIndiana and IPS, but system
 changes are not limited to this role.
 
 We'll discuss the available actuators in the next section and then provide some
@@ -96,8 +96,8 @@ package delivers the SMF manifest file and method script, and the packaged
 application requires that the SMF service it delivers must be available
 after package installation.
 
-In older Oracle Solaris releases, SVR4 post-install scripting would run an SMF
-command to restart the ``svc:/system/manifest-import:default`` service.
+SVR4 post-install scripting could run an SMF command to restart the
+``svc:/system/manifest-import:default`` service.
 
 In IPS, the action delivering the manifest file into ``lib/svc/manifest`` or
 ``var/svc/manifest`` should instead be tagged with the actuator:

@@ -34,7 +34,7 @@ a large number of packages, or publishing packages over a period of time, there
 can be aspects which involve a significant time commitment for doing repetitive
 tasks.
 
-For example, one rule that's used when publishing Oracle Solaris is that all
+For example, one rule that's used when publishing OpenIndiana is that all
 kernel modules should be tagged as requiring a reboot.
 
 One option would be to impose this constraint through human examination and
@@ -55,7 +55,7 @@ files to be processed.
 Transform Rules
 ~~~~~~~~~~~~~~~
 
-When publishing Oracle Solaris, we made the assumption that all files delivering
+When publishing OpenIndiana, we made the assumption that all files delivering
 in a subdirectory named "``kernel``" should be treated as kernel modules.  This
 is the rule used to do the tagging::
 
@@ -170,7 +170,7 @@ Packaged Transforms
 ~~~~~~~~~~~~~~~~~~~
 
 As a convenience to developers, a set of the transforms that were used when
-packaging Oracle Solaris itself are available in ``/usr/share/pkg/transforms``.
+packaging OpenIndiana itself are available in ``/usr/share/pkg/transforms``.
 At the time of writing, these are:
 
     **developer**

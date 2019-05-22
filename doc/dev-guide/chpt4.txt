@@ -117,7 +117,7 @@ A package should define the following metadata.
 See also "Set Actions" in *Chapter 3*.
 
 * ``pkg.fmri`` defines the name and version of the package as described in
-  "Package" in *Chapter 3*. A description of Oracle Solaris versioning can
+  "Package" in *Chapter 3*. A description of OpenIndiana versioning can
   be found in *Chapter 13*
 
 * ``pkg.description`` is a description of the contents of the
@@ -332,7 +332,7 @@ our man pages.  This is a good example of the *self-assembly* idiom that was
 discussed in *Chapter 1*, and is used throughout the packaging of the OS
 itself.
 
-Oracle Solaris ships with a set of |pkgmogrify| transforms that were used to
+OpenIndiana ships with a set of |pkgmogrify| transforms that were used to
 package the the operating system, in ``/usr/share/pkg/transforms``.  These
 transforms are discussed in more detail in *Chapter 8*.
 
@@ -419,7 +419,7 @@ In the case of our test package, we see::
 These warnings are acceptable for our purposes:
 
   * ``opensolaris.manifest001.1`` is warning us that we haven't declared a tag
-    that is generally only required for bundled Oracle Solaris software, so we
+    that is generally only required for bundled OpenIndiana software, so we
     can ignore this warning.
 
   * ``pkglint.action005.1`` is warning us that |pkglint| wasn't able to find a
@@ -431,7 +431,7 @@ These warnings are acceptable for our purposes:
 When |pkglint| is run with a ``-r`` flag referencing a repository containing
 the package that our test package has a dependency on, we see::
 
-    $ pkglint -c ./solaris-reference -r http://pkg.oracle.com/solaris11/release mypkg.p5m.4.res
+    $ pkglint -c ./oi-reference -r http://pkg.openindiana.org/hipster mypkg.p5m.4.res
     Lint engine setup...
 
     PHASE                                          ITEMS

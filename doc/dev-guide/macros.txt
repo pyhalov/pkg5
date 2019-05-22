@@ -1,6 +1,5 @@
 
-.. |logo| image:: ../../doc/dev-guide/pkg-block-logo.png
-.. |ologo| image:: ../../doc/dev-guide/ologo.png
+.. |oilogo| image:: ../../doc/dev-guide/oi_logo.jpg
 
 .. Some basic macros, possibly links to man pages?
 

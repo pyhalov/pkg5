@@ -86,7 +86,7 @@ to be ‘"IPS has lots of features"’ instead of whatever was there originally,
 and republish to our new repository::
 
     $ mkdir republish; cd republish
-    $ pkgrecv -d . --raw -s http://pkg.oracle.com/solaris/release package/pkg
+    $ pkgrecv -d . --raw -s http://openindiana.org/hipster/ package/pkg
     $ cd package*    # package name contains a '/', and is url-encoded.
     $ cd *           # we pulled down just the latest package by default
     $ cat > fix-pkg
@@ -109,7 +109,7 @@ name.
 
 This can be useful, for example, when consolidating the packages from several
 different development teams' repositories into a single repository for
-integration testing, a model that was used during development of Oracle Solaris.
+integration testing.
 
 Again, this can be achieved using the steps in *Example 1*, using
 ``pkgrecv --raw``, running a |pkgmogrify| transform on the resulting

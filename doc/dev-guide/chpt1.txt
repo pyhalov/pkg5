@@ -30,7 +30,7 @@ some of the implications of those  choices.
 
 IPS is designed to eliminate some long-standing issues with previous
 software distribution, installation and maintenance mechanisms
-that have caused significant problems for Oracle Solaris customers,
+that have caused significant problems for users,
 developers/maintainers and ISVs.
 
 Principle IPS design concepts and goals include:
@@ -51,7 +51,7 @@ Principle IPS design concepts and goals include:
   correctly installed as defined by the author (publisher) of the
   package; such a check should not be spoofable.
 
-* Incorporate mechanisms to allow for the easy virtualization of Oracle Solaris
+* Incorporate mechanisms to allow for the easy virtualization of OpenIndiana 
   at a variety of levels - and zones in particular.
 
 * Reduce the effort required to generate patches/upgrades for existing
@@ -68,7 +68,7 @@ These goals led fairly directly to the following ideas:
 
   This means that:
 
-       * Oracle Solaris 11 requires ZFS as the root file system; zone
+       * OpenIndiana requires ZFS as the root file system; zone
          file systems need to be on ZFS as well.
 
        * Users can create as many boot environments as desired.
@@ -79,10 +79,10 @@ These goals led fairly directly to the following ideas:
 	 version of the OS.
 
 * Eliminate duplicated mechanisms and code used to install, patch
-  and update Oracle Solaris.
+  and update the operating system.
 
-  This results in several significant changes to the way Oracle Solaris
-  is maintained.  In particular:
+  This results in several significant changes to the way the operating
+  system is maintained.  In particular:
 
        * All OS software updates and patching are done directly with
          IPS.
@@ -160,8 +160,7 @@ Several idioms are employed to facilitate software self-assembly:
       delivers a single software object - either a file system object, such as a
       *file*, *directory* or *link*, or a more complex software construct, such
       as a *user*, *group* or *driver*.   These more complex action types,
-      previously handled by SVR4 class action scripts in older Oracle Solaris
-      releases no longer require scripting.
+      previously handled by SVR4 class action scripts no longer require scripting.
 
       Actions, grouped together into *packages*, can be installed, updated and
       removed from both live images as well as offline images.
@@ -169,7 +168,7 @@ Several idioms are employed to facilitate software self-assembly:
       While IPS allows for the set of known action types to be extended in the
       packaging system, during development we have found that the action types
       delivered at present are sufficient for all packaged software in
-      Oracle Solaris. It is not expected that package developers will need to
+      OpenIndiana. It is not expected that package developers will need to
       create new action types.
 
       Actions are discussed in more detail in *Chapter 3*.
@@ -187,23 +186,19 @@ Several idioms are employed to facilitate software self-assembly:
       complete configuration file before reading it.
 
       A good example of this is the ``/etc/user_attr`` configuration file, used
-      by Oracle Solaris to configure extended attributes for roles and users on
+      by OpenIndiana to configure extended attributes for roles and users on
       the system.
 
-      This file is now used for local changes only, and Oracle Solaris has been
-      modified to read its complete configuration from the separate files
-      delivered into the directory ``/etc/user_attr.d``.  Multiple packages
-      deliver fragments of the complete configuration, with no additional
-      scripting needed when fragments are installed, removed or updated.
+      Special service ``svc:/system/rbac:default`` now can be used to regenerate
+      ``/etc/user_attr`` from the separate files delivered into the directory
+      ``/etc/user_attr.d``.  Multiple packages deliver fragments of the complete
+      configuration. IPS action delivering these files are marked with
+      ``restart_fmri`` attribute wich causes service restart when these
+      fragments are installed, removed or updated. Now no additional scripting
+      is required to update this file.
 
       Obviously this requires that the software is written with composition in
       mind, which isn't always possible.
-
-      An alternative way to support the concept of composition, is for a service
-      to treat the configuration file as volatile, and re-assemble it when when
-      fragments of the configuration are installed, removed, or updated.
-      Typically, this assembly is performed by an SMF service.  We will discuss
-      this idiom in the next item.
 
 
   * **Actuators & SMF services**
@@ -222,22 +217,6 @@ Several idioms are employed to facilitate software self-assembly:
       ensure that each service only runs when all of its dependencies have been
       met.
 
-      Oracle Solaris includes an SMF milestone,
-      ``svc:/milestone/self-assembly-complete:default``, upon which can any
-      service can add itself as a dependency.  The intention is that once the
-      booting operating system has reached this milestone, all self-assembly
-      operations have completed.
-
-      Oracle Solaris supports a special type of zone called an |Immutable Zone|,
-      where the zone can be configured to have restricted write-access to
-      portions of it's file system (see the discussion of ``file-mac-profile``
-      in the |zonecfg| manual page)
-
-      In these types of zones, to complete self-assembly, they are first booted
-      read/write as far as the ``self-assembly-complete`` SMF milestone, after
-      which they are automatically booted to the required ``file-mac-profile``
-      setting.
-
 Designing Your Package
 ......................
 
@@ -252,7 +231,7 @@ produce a good set of packages.
 Naming Your Package
 ~~~~~~~~~~~~~~~~~~~
 
-Oracle Solaris uses a hierarchical naming strategy for IPS packages.  Wherever
+OpenIndiana uses a hierarchical naming strategy for IPS packages.  Wherever
 possible, design your package names to fit into the same scheme. Try to keep the
 last part of your package name reasonably unique such that ``pkg install
 <name>`` doesn't report conflicts.
