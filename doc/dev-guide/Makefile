@@ -65,9 +65,16 @@ BOOK_FRAGMENTS= developer-guide.txt	\
 PROTO=../../proto/dev-guide
 DOCTMP=doctmp
 DOCTOOLS=doctools
-TOOLSPATH=$(DOCTOOLS)/lib/python2.6/site-packages
+TOOLSPATH=$(DOCTOOLS)/lib/python2.7/site-packages
+VENVPATH=$(DOCTOOLS)/venv
+PIP=$(VENVPATH)/bin/pip
+VIRTUALENV=$(DOCTOOLS)/bin/virtualenv
+VENV=PYTHONPATH=$(TOOLSPATH) $(VIRTUALENV)
+SED=/usr/gnu/bin/sed
 
-RST2PDF=@PYTHONPATH=$(TOOLSPATH) $(DOCTOOLS)/bin/rst2pdf -s $(STYLE) $(BOOK_OPT)
+FLOWTABLES=$(VENVPATH)/lib/python2.7/site-packages/rst2pdf/flowables.py
+
+RST2PDF=env LD_LIBRARY_PATH=/usr/lib/libjpeg8-turbo/lib $(VENVPATH)/bin/rst2pdf -s $(STYLE) $(BOOK_OPT)
 STYLE=dev-guide.style
 
 # XXX unused at present - unsure if rst2docbook is correct, or whether we want
@@ -88,12 +95,7 @@ EASY_INSTALL=PYTHONPATH=$(TOOLSPATH) /usr/bin/easy_install
 GPATCH=/usr/bin/gpatch
 WGET=/usr/bin/wget
 
-# our version of docutils doesn't work with rst2pdf at the moment, so we need
-# to apply a patch to that code.  We apply a similar patch to docbook.py
-CREATEPDF=$(TOOLSPATH)/rst2pdf-0.16-py2.6.egg/rst2pdf/createpdf.py
-DOCBOOKPY=$(TOOLSPATH)/docutils-0.8.1-py2.6.egg/docutils/writers/docbook.py
-
-VERSION_CMD=id -i || git log --pretty=format:'%h' -1..
+VERSION_CMD= git log -1 --pretty=format:'%h'
 VERSION=$(VERSION_CMD:sh)
 DATE_CMD=date +%F:%R:%S-%Z
 DATE=$(DATE_CMD:sh)
@@ -101,29 +103,21 @@ DATE=$(DATE_CMD:sh)
 VERSTAMP=$(DATE) $(VERSION)
 
 all:	install
-install: rst2pdf proto book
+install: venv proto book
 
 # pull down a local copy of rst2pdf and rst2docbook.py
-tools:  rst2pdf rst2docbook proto
+tools:  venv proto
 
-rst2pdf: proto
-	@if [ ! -f $(CREATEPDF) ]; then \
-		$(EASY_INSTALL) --prefix=$(DOCTOOLS) rst2pdf; \
-		$(GPATCH) -f -R $(CREATEPDF) < createpdf.patch; \
-	fi
+venv: $(VENVPATH)
 
-rst2docbook: rst2pdf
-	@if [ ! -f $(DOCBOOKPY) ]; then \
-		cd $(DOCTMP) ; \
-		$(WGET) -q -r -np $(DOCBOOKRST_URL); \
-		cd $(DOCBOOKRST_PATH); \
-		python setup.py install --prefix=../../../../../$(DOCTOOLS); \
-		cd ../../../../../ ; \
-		# XXX this is ugly; \
-		cp -r $(TOOLSPATH)/docutils $(TOOLSPATH)/docutils-0.8.1-py2.6.egg ; \
-		rm -rf $(TOOLSPATH)/docutils ; \
-		$(GPATCH) -f -R $(DOCBOOKPY) < docbook.patch; \
-	fi
+$(VENVPATH): $(VIRTUALENV)
+	$(VENV) $(VENVPATH)
+	$(PIP) install rst2pdf
+	# https://github.com/rst2pdf/rst2pdf/pull/774
+	grep -q '^import reportlab$$' $(FLOWTABLES) || $(SED) -i -e '/^import re$$/aimport reportlab'  $(FLOWTABLES)
+
+$(VIRTUALENV): proto
+	$(EASY_INSTALL) --prefix=$(DOCTOOLS) virtualenv
 
 proto: doctmp doctools
 	mkdir -p $(PROTO)

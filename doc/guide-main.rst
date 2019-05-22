@@ -806,7 +806,7 @@ pkg(1)
    <pre>
 
 .. raw:: html
-   :file: ../src/man/pkg.1.txt
+   :file: ../src/man/pkg.1
 
 .. raw:: html
 
@@ -817,7 +817,7 @@ pkg(1)
    \begin{verbatim}
 
 .. raw:: latex
-   :file: ../src/man/pkg.1.txt
+   :file: ../src/man/pkg.1
 
 .. raw:: latex
 
@@ -831,7 +831,7 @@ pkgrecv(1)
    <pre>
 
 .. raw:: html
-   :file: ../src/man/pkgrecv.1.txt
+   :file: ../src/man/pkgrecv.1
 
 .. raw:: html
 
@@ -842,7 +842,7 @@ pkgrecv(1)
    \begin{verbatim}
 
 .. raw:: latex
-   :file: ../src/man/pkgrecv.1.txt
+   :file: ../src/man/pkgrecv.1
 
 .. raw:: latex
 
@@ -856,7 +856,7 @@ pkgsend(1)
    <pre>
 
 .. raw:: html
-   :file: ../src/man/pkgsend.1.txt
+   :file: ../src/man/pkgsend.1
 
 .. raw:: html
 
@@ -867,7 +867,7 @@ pkgsend(1)
    \begin{verbatim}
 
 .. raw:: latex
-   :file: ../src/man/pkgsend.1.txt
+   :file: ../src/man/pkgsend.1
 
 .. raw:: latex
 
@@ -881,7 +881,7 @@ pkg.depotd(1M)
    <pre>
 
 .. raw:: html
-   :file: ../src/man/pkg.depotd.1m.txt
+   :file: ../src/man/pkg.depotd.1m
 
 .. raw:: html
 
@@ -892,7 +892,7 @@ pkg.depotd(1M)
    \begin{verbatim}
 
 .. raw:: latex
-   :file: ../src/man/pkg.depotd.1m.txt
+   :file: ../src/man/pkg.depotd.1m
 
 .. raw:: latex
 
@@ -906,7 +906,7 @@ pkg(5)
    <pre>
 
 .. raw:: html
-   :file: ../src/man/pkg.5.txt
+   :file: ../src/man/pkg.5
 
 .. raw:: html
 
@@ -917,7 +917,7 @@ pkg(5)
    \begin{verbatim}
 
 .. raw:: latex
-   :file: ../src/man/pkg.5.txt
+   :file: ../src/man/pkg.5
 
 .. raw:: latex
 
