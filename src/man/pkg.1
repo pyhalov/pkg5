@@ -71,7 +71,7 @@ pkg \- Image Packaging System retrieval client
 /usr/bin/pkg apply-hot-fix [-nvq] [--no-be-activate]
     [--no-backup-be | --require-backup-be] [--backup-be-name \fIname\fR]
     [--deny-new-be | --require-new-be] [--be-name \fIname\fR]
-    [-r [[-z \fIzonename\fR]... | [-Z \fIzonename\fR]... ]]
+    [-R | -r [[-z \fIzonename\fR]... | [-Z \fIzonename\fR]... ]]
     <path_or_uri> [\fIpkg_fmri_pattern\fR ...]
 .fi
 
@@ -813,7 +813,7 @@ For all other options, see the \fBinstall\fR command above.
 .ne 2
 .mk
 .na
-\fB\fBpkg apply-hot-fix\fR [\fB-nvq\fR] [\fB-r\fR [[\fB-z\fR \fIzonename\fR]... | [\fB-Z\fR \fIzonename\fR]... ]] [\fB--no-be-activate\fR] [\fB--no-backup-be\fR | \fB--require-backup-be\fR] [\fB--backup-be-name\fR \fIname\fR] [\fB--deny-new-be\fR | \fB--require-new-be\fR] [\fB--be-name\fR \fIname\fR] <\fIpath_or_uri\fR> [\fIpkg_fmri_pattern\fR ...]\fR
+\fB\fBpkg apply-hot-fix\fR [\fB-nvq\fR] [\fB-R\fR | \fB-r\fR [[\fB-z\fR \fIzonename\fR]... | [\fB-Z\fR \fIzonename\fR]... ]] [\fB--no-be-activate\fR] [\fB--no-backup-be\fR | \fB--require-backup-be\fR] [\fB--backup-be-name\fR \fIname\fR] [\fB--deny-new-be\fR | \fB--require-new-be\fR] [\fB--be-name\fR \fIname\fR] <\fIpath_or_uri\fR> [\fIpkg_fmri_pattern\fR ...]\fR
 .ad
 .sp .6
 .RS 4n
