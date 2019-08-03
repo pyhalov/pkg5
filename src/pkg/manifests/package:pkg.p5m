@@ -471,6 +471,7 @@ dir  path=var/log/pkg/mirror
 group groupname=pkg5srv gid=97
 user username=pkg5srv gcos-field="pkg(5) server UID" group=pkg5srv password=NP \
     uid=97
+license lic_CDDL license=CDDL
 license lic_gustaebel license="MIT (Lars Gustaebel)" \
     com.oracle.info.description="portions of the tarfile module from Python 2.4" \
     com.oracle.info.name=tarfile com.oracle.info.tpno=17819 \
@@ -478,8 +479,8 @@ license lic_gustaebel license="MIT (Lars Gustaebel)" \
 license lic_minisat license="MIT (MiniSAT)" \
     com.oracle.info.description="MiniSAT 1.14.1" com.oracle.info.name=MiniSAT \
     com.oracle.info.tpno=17867 com.oracle.info.version=1.14.1
-license lic_CDDL license=CDDL
-depend type=group fmri=package/pkg/zones-proxy variant.opensolaris.zone=nonglobal
+depend type=group fmri=package/pkg/zones-proxy \
+    variant.opensolaris.zone=nonglobal
 # cross zone dependency on linked image metadata
 #depend type=parent fmri=feature/package/dependency/self #    variant.opensolaris.zone=nonglobal
 depend type=require fmri=crypto/ca-certificates
