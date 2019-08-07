@@ -499,3 +499,4 @@ depend type=require fmri=library/python/pycurl-35
 depend type=require fmri=library/python/pyopenssl-35
 depend type=require fmri=library/python/simplejson-35@3.6.5
 depend type=require fmri=library/python/six-35
+depend type=require fmri=locale/en
