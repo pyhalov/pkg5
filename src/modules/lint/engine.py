@@ -1264,6 +1264,11 @@ def lint_fmri_successor(new, old, ignore_pubs=True, ignore_timestamps=True):
                 if new.version.release < old.version.release:
                         return False
 
+                if new.version.branch and not old.version.branch:
+                        return True
+                if old.version.branch and not new.version.branch:
+                        return False
+
                 if new.version.branch > old.version.branch:
                         return True
                 if new.version.branch < old.version.branch:
