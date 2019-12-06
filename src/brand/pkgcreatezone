@@ -390,6 +390,11 @@ if (( $brand_labeled == 1 )); then
 	done
 fi
 
+# Create default home directory
+if [ ! -d $ZONEROOT/export/home ]; then
+	mkdir -p $ZONEROOT/export/home
+fi
+
 printf "$m_complete\n\n" ${SECONDS}
 if (( $brand_labeled == 0 )); then
 	printf "$m_postnote\n"
