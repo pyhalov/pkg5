@@ -60,7 +60,7 @@ clean: $(SUBDIRS)
 	@cd pkg; pwd; make clean
 
 clobber: $(SUBDIRS)
-	$(PYTHON3) setup.py clobber
+	$(PYTHON35) setup.py clobber
 	@cd pkg; pwd; make clobber
 
 #
