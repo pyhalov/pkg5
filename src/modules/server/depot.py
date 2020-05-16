@@ -44,6 +44,7 @@ else:
 import atexit
 import ast
 import errno
+import io
 import inspect
 import itertools
 import math
@@ -1356,8 +1357,11 @@ class DepotHTTP(_Depot):
                                 continue
 
                         with open(lpath, "rb") as lfile:
-                                misc.gunzip_from_stream(lfile, lsummary,
+                                bsummary = io.BytesIO()
+                                misc.gunzip_from_stream(lfile, bsummary,
                                     ignore_hash=True)
+                                bsummary.seek(0)
+                                lsummary.write(bsummary.read().decode('utf-8'))
                 lsummary.seek(0)
 
                 self.__set_response_expires("info", 86400*365, 86400*365)
