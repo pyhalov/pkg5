@@ -49,7 +49,7 @@ ROOTDIRS = \
 	$(ROOTBRAND) \
 	$(ROOTBRANDPKG) \
 	$(ROOTBRANDNLIPKG) \
-	$(KVMBRANDPKG)
+	$(KVMBRANDPKG) \
 	$(BHYVEBRANDPKG)
 
 ROOTFILES = \
@@ -78,13 +78,14 @@ ROOTFILES = \
 	$(KVMBRANDPKG)/createzone \
 	$(KVMBRANDPKG)/init \
 	$(KVMBRANDPKG)/socat \
-	$(KVMBRANDPKG)/support
+	$(KVMBRANDPKG)/support \
 	$(BHYVEBRANDPKG)/config.xml \
 	$(BHYVEBRANDPKG)/platform.xml \
 	$(BHYVEBRANDPKG)/createzone \
 	$(BHYVEBRANDPKG)/init \
 	$(BHYVEBRANDPKG)/socat \
 	$(BHYVEBRANDPKG)/support \
+	$(BHYVEBRANDPKG)/uninstall \
 	$(BHYVEBRANDPKG)/common.ksh \
 	$(BHYVEBRANDPKG)/firewall.ksh \
 	$(BHYVEBRANDPKG)/vnic.ksh \
