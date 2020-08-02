@@ -20,7 +20,6 @@ set name=variant.arch value=$(ARCH)
 dir  path=usr/lib
 dir  path=usr/lib/brand
 dir  path=usr/lib/brand/bhyve
-file path=usr/lib/brand/bhyve/common.ksh mode=0644
 file path=usr/lib/brand/bhyve/config.xml mode=0644
 file path=usr/lib/brand/bhyve/createzone mode=0755
 file path=usr/lib/brand/bhyve/firewall.ksh mode=0644

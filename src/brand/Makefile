@@ -142,3 +142,6 @@ $(KVMBRANDPKG)/%: $(KVMBRANDPKG) kvm/%
 
 $(BHYVEBRANDPKG)/%: $(BHYVEBRANDPKG) bhyve/%
 	rm -f $@; $(INSTALL) -f $(BHYVEBRANDPKG) -m 0444 $<
+
+$(BHYVEBRANDPKG)/createzone: $(BHYVEBRANDPKG) kvm/createzone
+	rm -f $@; $(INSTALL) -f $(BHYVEBRANDPKG) -m 0444 $<

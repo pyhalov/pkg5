@@ -11,7 +11,6 @@
 
 # Copyright 2020 OmniOS Community Edition (OmniOSce) Association.
 
-. /usr/lib/brand/bhyve/common.ksh
 . /usr/lib/brand/bhyve/vars.ksh
 . /usr/lib/brand/bhyve/firewall.ksh
 . /usr/lib/brand/bhyve/log.ksh
