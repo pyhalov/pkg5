@@ -78,9 +78,9 @@ ROOTFILES = \
 	$(KVMBRANDPKG)/init \
 	$(KVMBRANDPKG)/socat \
 	$(KVMBRANDPKG)/support \
+	$(KVMBRANDPKG)/createzone \
 	$(BHYVEBRANDPKG)/config.xml \
 	$(BHYVEBRANDPKG)/platform.xml \
-	$(BHYVEBRANDPKG)/createzone \
 	$(BHYVEBRANDPKG)/init \
 	$(BHYVEBRANDPKG)/socat \
 	$(BHYVEBRANDPKG)/support \
