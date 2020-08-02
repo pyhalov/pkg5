@@ -33,7 +33,6 @@ file path=usr/lib/brand/bhyve/support mode=0755
 file path=usr/lib/brand/bhyve/uninstall mode=0755
 file path=usr/lib/brand/bhyve/util.ksh mode=0644
 file path=usr/lib/brand/bhyve/vars.ksh mode=0644
-file path=usr/lib/brand/bhyve/vnic.ksh mode=0644
 depend type=require fmri=network/netcat
 depend type=require fmri=system/bhyve
 depend type=require fmri=system/bhyve/firmware

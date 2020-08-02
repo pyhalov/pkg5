@@ -88,7 +88,6 @@ ROOTFILES = \
 	$(BHYVEBRANDPKG)/uninstall \
 	$(BHYVEBRANDPKG)/common.ksh \
 	$(BHYVEBRANDPKG)/firewall.ksh \
-	$(BHYVEBRANDPKG)/vnic.ksh \
 	$(BHYVEBRANDPKG)/util.ksh \
 	$(BHYVEBRANDPKG)/log.ksh \
 	$(BHYVEBRANDPKG)/image.ksh \
