@@ -82,7 +82,6 @@ ROOTFILES = \
 	$(BHYVEBRANDPKG)/config.xml \
 	$(BHYVEBRANDPKG)/platform.xml \
 	$(BHYVEBRANDPKG)/init \
-	$(BHYVEBRANDPKG)/socat \
 	$(BHYVEBRANDPKG)/support \
 	$(BHYVEBRANDPKG)/uninstall \
 	$(BHYVEBRANDPKG)/firewall.ksh \
@@ -115,7 +114,7 @@ clobber: clean
 	rm -f $(ROOTFILES)
 	rm -fr $(ROOTBRAND)
 
-install: $(ROOTFILES) $(BHYVEBRANDPKG)/createzone
+install: $(ROOTFILES) $(BHYVEBRANDPKG)/createzone $(BHYVEBRANDPKG)/socat
 
 
 $(ROOT) $(ROOTETC) $(ROOTETCBRAND) $(ROOTETCZONES) $(ROOTUSRLIB) \
@@ -143,3 +142,6 @@ $(BHYVEBRANDPKG)/%: $(BHYVEBRANDPKG) bhyve/%
 
 $(BHYVEBRANDPKG)/createzone: $(BHYVEBRANDPKG)
 	rm -f $@; $(INSTALL) -f $(BHYVEBRANDPKG) -m 0444 kvm/createzone
+
+$(BHYVEBRANDPKG)/socat: $(BHYVEBRANDPKG)
+	rm -f $@; $(INSTALL) -f $(BHYVEBRANDPKG) -m 0444 kvm/socat
